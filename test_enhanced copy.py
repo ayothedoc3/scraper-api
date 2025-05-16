@@ -1,17 +1,12 @@
-from typing import List
-from pydantic import BaseModel
 import requests
+import openai
 import time
 import json
+import os
 import datetime
 import re
 from pathlib import Path
 import math
-from SimplerLLM.language.llm import LLM, LLMProvider
-from SimplerLLM.language.llm_addons import generate_pydantic_json_model
-
-llm_instance = LLM.create(provider=LLMProvider.OPENAI,model_name="gpt-4o")
-
 
 # ========== CONFIG ==========
 SCRAPER_API_KEY = '57e9758e150311f9e07c9923e5731678'
@@ -25,35 +20,21 @@ SCORE_WEIGHTS = {
     "keyword_relevance": 0.15  # 15% weight for keyword relevance
 }
 
-# Minimum relevance threshold (0-10) for counting items
-MIN_RELEVANCE_THRESHOLD = 5
-
-# Validation thresholds
-VALIDATION_THRESHOLDS = {
-    "strongly_validated": 85,  # Was 80
-    "validated": 70,           # Was 65
-    "partially_validated": 55, # Was 50
-    "weakly_validated": 40     # Was 35
-}
-
-NUM_PAGES = 3  # how many pages per site to fetch (was 2)
+NUM_PAGES = 2  # how many pages per site to fetch
 NUM_KEYWORDS = 5  # number of keywords to generate
 SOURCES = {
     "Reddit": "https://www.reddit.com/search/?q={query}&page={page}",
+    #"Quora": "https://www.quora.com/search?q={query}&page={page}",
     "ProductHunt": "https://www.producthunt.com/search?q={query}&page={page}",
     #"HackerNews": "https://hn.algolia.com/?q={query}&page={page}"
 }
-
+openai.api_key = OPENAI_API_KEY
 
 # Base directory for logs
 LOGS_DIR = Path("logs")
 
 # ========== KEYWORD GENERATION ==========
-class KeywordModel(BaseModel):
-    keywords: List[str]
-
 def generate_keywords(business_idea, num_keywords=NUM_KEYWORDS):
-
     """
     Generate relevant keywords for a business idea using OpenAI
     
@@ -72,16 +53,22 @@ For the business idea: "{business_idea}"
 Generate {num_keywords} specific search keywords that would help validate this idea.
 These should be phrases people might use when discussing pain points, needs, or solutions related to this idea.
 
-
+ONLY return a valid JSON object with a 'keywords' array like this:
+{{
+    "keywords": ["keyword1", "keyword2", "keyword3", "keyword4", "keyword5"]
+}}
 """
     
     try:
-        response_model = generate_pydantic_json_model(model_class=KeywordModel,
-                                                      llm_instance=llm_instance,
-                                                      prompt=prompt)
-  
-      
-        keywords = response_model
+        response = openai.chat.completions.create(
+            model="gpt-4o",
+            messages=[{"role": "user", "content": prompt}],
+            temperature=0.7,
+            response_format={"type": "json_object"}
+        )
+        reply = response.choices[0].message.content
+        result = json.loads(reply)
+        keywords = result.get("keywords", [])
         
         # Always include the original business idea as a keyword
         if business_idea not in keywords:
@@ -92,8 +79,6 @@ These should be phrases people might use when discussing pain points, needs, or 
         print(f"Error generating keywords: {e}")
         # Return the original business idea as a fallback
         return [business_idea]
-    
-
 
 # ========== LOGGING SETUP ==========
 def setup_master_log_directory(business_idea):
@@ -219,18 +204,6 @@ def fetch_page(url, log_dirs=None, source_name=None, page_num=None):
         return None
 
 # ========== ANALYZER ==========
-class TextWithRelevance(BaseModel):
-    text: str
-    relevance: int
-
-class BusinessIdeaAnalysis(BaseModel):
-    pain_points: List[TextWithRelevance]
-    excitement_signals: List[TextWithRelevance]
-    mentions_of_competitors: List[str]
-    notable_quotes: List[str]
-    red_flags: List[str]
-    coherence_score: int
-
 def analyze_text_with_openai(text, keyword, log_dirs=None, source_name=None, page_num=None):
     """
     Analyze text using OpenAI and optionally log the results
@@ -255,24 +228,28 @@ Find:
 3. Competitors mentioned
 4. Notable quotes (max 2 short quotes)
 
-For each pain point and excitement signal, rate its relevance to the business idea on a scale of 0-10, 
-where 0 means completely irrelevant and 10 means highly relevant and specific to the business idea.
+ONLY return a valid JSON like this:
 
-Also identify any contradictions or red flags in the data that might indicate the business idea is not viable.
-
-
-The coherence_score (0-10) represents how consistent and coherent the findings are, with 10 being highly coherent 
-and 0 indicating contradictory or nonsensical findings.
+{{
+    "pain_points": [],
+    "excitement_signals": [],
+    "mentions_of_competitors": [],
+    "notable_quotes": []
+}}
 
 Text to analyze:
 {text}
 """
 
     try:
-        response_model = generate_pydantic_json_model(model_class=BusinessIdeaAnalysis,
-                                                      llm_instance=llm_instance,
-                                                      prompt=prompt)
-     
+        response = openai.chat.completions.create(
+            model="gpt-4o",
+            messages=[{"role": "user", "content": prompt}],
+            temperature=0.2,
+            response_format={"type": "json_object"}
+        )
+        reply = response.choices[0].message.content
+        result = json.loads(reply)
         
         # Log analyzed results if logging is enabled
         if log_dirs and source_name and page_num is not None:
@@ -287,12 +264,12 @@ Text to analyze:
                     "keyword": keyword,
                     "timestamp": datetime.datetime.now().isoformat()
                 },
-                "analysis": response_model.model_dump()
+                "analysis": result
             }
             
             save_to_file(log_result, file_path, is_json=True)
             
-        return response_model.model_dump()
+        return result
     except Exception as e:
         print(f"Error during OpenAI analysis: {e}")
         return {
@@ -317,90 +294,18 @@ def merge_results(all_results):
         "pain_points": [],
         "excitement_signals": [],
         "mentions_of_competitors": [],
-        "notable_quotes": [],
-        "red_flags": [],
-        "coherence_scores": []
+        "notable_quotes": []
     }
     
     for res in all_results:
-        # Handle pain points and excitement signals with relevance scores
-        if "pain_points" in res:
-            final["pain_points"].extend(res["pain_points"])
-        
-        if "excitement_signals" in res:
-            final["excitement_signals"].extend(res["excitement_signals"])
-        
-        # Handle simple list fields
-        if "mentions_of_competitors" in res:
-            final["mentions_of_competitors"].extend(res.get("mentions_of_competitors", []))
-        
-        if "notable_quotes" in res:
-            final["notable_quotes"].extend(res.get("notable_quotes", []))
-        
-        # Handle red flags
-        if "red_flags" in res:
-            final["red_flags"].extend(res.get("red_flags", []))
-        
-        # Track coherence scores
-        if "coherence_score" in res:
-            final["coherence_scores"].append(res.get("coherence_score", 5))
+        final["pain_points"] += res.get("pain_points", [])
+        final["excitement_signals"] += res.get("excitement_signals", [])
+        final["mentions_of_competitors"] += res.get("mentions_of_competitors", [])
+        final["notable_quotes"] += res.get("notable_quotes", [])
     
-    # Deduplicate simple lists (competitors and red flags)
-    final["mentions_of_competitors"] = list(set(final["mentions_of_competitors"]))
-    final["red_flags"] = list(set(final["red_flags"]))
-    
-    # Deduplicate notable quotes (similar to pain points and excitement signals)
-    deduplicated_quotes = {}
-    for item in final["notable_quotes"]:
-        if isinstance(item, dict) and "text" in item:
-            text = item["text"]
-            if text not in deduplicated_quotes:
-                deduplicated_quotes[text] = item
-        elif isinstance(item, str):  # Handle old format for backward compatibility
-            if item not in deduplicated_quotes:
-                deduplicated_quotes[item] = {"text": item}
-    
-    # Convert back to list
-    final["notable_quotes"] = list(deduplicated_quotes.values())
-    
-    # For pain points and excitement signals, we need to deduplicate based on text content
-    # while preserving the relevance scores
-    deduplicated_pain_points = {}
-    for item in final["pain_points"]:
-        if isinstance(item, dict) and "text" in item and "relevance" in item:
-            text = item["text"]
-            relevance = item["relevance"]
-            
-            if text not in deduplicated_pain_points or relevance > deduplicated_pain_points[text]["relevance"]:
-                deduplicated_pain_points[text] = item
-        elif isinstance(item, str):  # Handle old format for backward compatibility
-            if item not in deduplicated_pain_points:
-                deduplicated_pain_points[item] = {"text": item, "relevance": 5}  # Default relevance
-    
-    deduplicated_excitement = {}
-    for item in final["excitement_signals"]:
-        if isinstance(item, dict) and "text" in item and "relevance" in item:
-            text = item["text"]
-            relevance = item["relevance"]
-            
-            if text not in deduplicated_excitement or relevance > deduplicated_excitement[text]["relevance"]:
-                deduplicated_excitement[text] = item
-        elif isinstance(item, str):  # Handle old format for backward compatibility
-            if item not in deduplicated_excitement:
-                deduplicated_excitement[item] = {"text": item, "relevance": 5}  # Default relevance
-    
-    # Convert back to lists
-    final["pain_points"] = list(deduplicated_pain_points.values())
-    final["excitement_signals"] = list(deduplicated_excitement.values())
-    
-    # Calculate average coherence score
-    if final["coherence_scores"]:
-        final["coherence_score"] = sum(final["coherence_scores"]) / len(final["coherence_scores"])
-    else:
-        final["coherence_score"] = 5  # Default middle value
-    
-    # Remove the list of scores
-    del final["coherence_scores"]
+    # Deduplicate
+    for key in final:
+        final[key] = list(set(final[key]))
     
     return final
 
@@ -490,90 +395,16 @@ def generate_aggregated_report(business_idea, keywords, all_keyword_results, mas
         "pain_points": [],
         "excitement_signals": [],
         "mentions_of_competitors": [],
-        "notable_quotes": [],
-        "red_flags": [],
-        "coherence_scores": []
+        "notable_quotes": []
     }
     
     for keyword, results in all_keyword_results.items():
-        # Handle pain points and excitement signals with relevance scores
-        if "pain_points" in results:
-            aggregated_results["pain_points"].extend(results["pain_points"])
-        
-        if "excitement_signals" in results:
-            aggregated_results["excitement_signals"].extend(results["excitement_signals"])
-        
-        # Handle simple list fields
-        if "mentions_of_competitors" in results:
-            aggregated_results["mentions_of_competitors"].extend(results.get("mentions_of_competitors", []))
-        
-        if "notable_quotes" in results:
-            aggregated_results["notable_quotes"].extend(results.get("notable_quotes", []))
-        
-        # Handle red flags
-        if "red_flags" in results:
-            aggregated_results["red_flags"].extend(results.get("red_flags", []))
-        
-        # Track coherence scores
-        if "coherence_score" in results:
-            aggregated_results["coherence_scores"].append(results.get("coherence_score", 5))
+        for key in aggregated_results:
+            aggregated_results[key].extend(results.get(key, []))
     
-    # Deduplicate simple lists (competitors and red flags)
-    aggregated_results["mentions_of_competitors"] = list(set(aggregated_results["mentions_of_competitors"]))
-    aggregated_results["red_flags"] = list(set(aggregated_results["red_flags"]))
-    
-    # Deduplicate notable quotes (similar to pain points and excitement signals)
-    deduplicated_quotes = {}
-    for item in aggregated_results["notable_quotes"]:
-        if isinstance(item, dict) and "text" in item:
-            text = item["text"]
-            if text not in deduplicated_quotes:
-                deduplicated_quotes[text] = item
-        elif isinstance(item, str):  # Handle old format for backward compatibility
-            if item not in deduplicated_quotes:
-                deduplicated_quotes[item] = {"text": item}
-    
-    # Convert back to list
-    aggregated_results["notable_quotes"] = list(deduplicated_quotes.values())
-    
-    # For pain points and excitement signals, we need to deduplicate based on text content
-    # while preserving the relevance scores
-    deduplicated_pain_points = {}
-    for item in aggregated_results["pain_points"]:
-        if isinstance(item, dict) and "text" in item and "relevance" in item:
-            text = item["text"]
-            relevance = item["relevance"]
-            
-            if text not in deduplicated_pain_points or relevance > deduplicated_pain_points[text]["relevance"]:
-                deduplicated_pain_points[text] = item
-        elif isinstance(item, str):  # Handle old format for backward compatibility
-            if item not in deduplicated_pain_points:
-                deduplicated_pain_points[item] = {"text": item, "relevance": 5}  # Default relevance
-    
-    deduplicated_excitement = {}
-    for item in aggregated_results["excitement_signals"]:
-        if isinstance(item, dict) and "text" in item and "relevance" in item:
-            text = item["text"]
-            relevance = item["relevance"]
-            
-            if text not in deduplicated_excitement or relevance > deduplicated_excitement[text]["relevance"]:
-                deduplicated_excitement[text] = item
-        elif isinstance(item, str):  # Handle old format for backward compatibility
-            if item not in deduplicated_excitement:
-                deduplicated_excitement[item] = {"text": item, "relevance": 5}  # Default relevance
-    
-    # Convert back to lists
-    aggregated_results["pain_points"] = list(deduplicated_pain_points.values())
-    aggregated_results["excitement_signals"] = list(deduplicated_excitement.values())
-    
-    # Calculate average coherence score
-    if aggregated_results["coherence_scores"]:
-        aggregated_results["coherence_score"] = sum(aggregated_results["coherence_scores"]) / len(aggregated_results["coherence_scores"])
-    else:
-        aggregated_results["coherence_score"] = 5  # Default middle value
-    
-    # Remove the list of scores
-    del aggregated_results["coherence_scores"]
+    # Deduplicate
+    for key in aggregated_results:
+        aggregated_results[key] = list(set(aggregated_results[key]))
     
     # Create final report
     final_report = {
@@ -611,60 +442,18 @@ def calculate_business_idea_scores(final_report):
     keyword_results = final_report["keyword_results"]
     keywords = final_report["metadata"]["keywords"]
     
-    # Filter items by relevance threshold
-    relevant_pain_points = []
-    for item in aggregated.get("pain_points", []):
-        if isinstance(item, dict) and "relevance" in item and item["relevance"] >= MIN_RELEVANCE_THRESHOLD:
-            relevant_pain_points.append(item)
-        elif isinstance(item, str):  # Handle old format
-            relevant_pain_points.append({"text": item, "relevance": 5})
-    
-    relevant_excitement = []
-    for item in aggregated.get("excitement_signals", []):
-        if isinstance(item, dict) and "relevance" in item and item["relevance"] >= MIN_RELEVANCE_THRESHOLD:
-            relevant_excitement.append(item)
-        elif isinstance(item, str):  # Handle old format
-            relevant_excitement.append({"text": item, "relevance": 5})
-    
     # Count items in each category
-    num_pain_points = len(relevant_pain_points)
-    num_excitement = len(relevant_excitement)
-    num_competitors = len(aggregated.get("mentions_of_competitors", []))
-    num_red_flags = len(aggregated.get("red_flags", []))
-    
-    # Calculate average relevance scores
-    avg_pain_relevance = 0
-    if relevant_pain_points:
-        avg_pain_relevance = sum(item["relevance"] for item in relevant_pain_points) / len(relevant_pain_points)
-    
-    avg_excitement_relevance = 0
-    if relevant_excitement:
-        avg_excitement_relevance = sum(item["relevance"] for item in relevant_excitement) / len(relevant_excitement)
-    
-    # Get coherence score
-    coherence_score = aggregated.get("coherence_score", 5)
+    num_pain_points = len(aggregated["pain_points"])
+    num_excitement = len(aggregated["excitement_signals"])
+    num_competitors = len(aggregated["mentions_of_competitors"])
     
     # Calculate keyword relevance score
     keyword_relevance = 0
     for keyword in keywords:
         # Calculate how many results each keyword found
         results = keyword_results.get(keyword, {})
-        
-        # Count relevant pain points and excitement signals
-        keyword_pain = 0
-        for item in results.get("pain_points", []):
-            if isinstance(item, dict) and "relevance" in item and item["relevance"] >= MIN_RELEVANCE_THRESHOLD:
-                keyword_pain += 1
-            elif isinstance(item, str):  # Handle old format
-                keyword_pain += 1
-        
-        keyword_excitement = 0
-        for item in results.get("excitement_signals", []):
-            if isinstance(item, dict) and "relevance" in item and item["relevance"] >= MIN_RELEVANCE_THRESHOLD:
-                keyword_excitement += 1
-            elif isinstance(item, str):  # Handle old format
-                keyword_excitement += 1
-        
+        keyword_pain = len(results.get("pain_points", []))
+        keyword_excitement = len(results.get("excitement_signals", []))
         keyword_competitors = len(results.get("mentions_of_competitors", []))
         
         # A keyword is more relevant if it found more insights
@@ -676,38 +465,26 @@ def calculate_business_idea_scores(final_report):
         keyword_relevance = keyword_relevance / len(keywords)
     
     # Calculate individual scores (0-10 scale)
-    # Pain points score - use a more linear approach and factor in relevance
-    pain_factor = num_pain_points * (avg_pain_relevance / 10)  # Scale by average relevance
-    pain_score = min(10, pain_factor * 1.5)  # More linear scaling
+    # Pain points score (more is better, up to a point)
+    pain_score = min(10, math.sqrt(num_pain_points) * 2.5)
     
-    # Excitement signals score - use a more linear approach and factor in relevance
-    excitement_factor = num_excitement * (avg_excitement_relevance / 10)  # Scale by average relevance
-    excitement_score = min(10, excitement_factor * 1.5)  # More linear scaling
+    # Excitement signals score (more is better, up to a point)
+    excitement_score = min(10, math.sqrt(num_excitement) * 2.5)
     
     # Competition score (moderate competition is ideal)
     if num_competitors == 0:
-        competition_score = 1  # No competitors is worse (was 3)
+        competition_score = 3  # No competitors might mean no market
     elif num_competitors <= 3:
-        competition_score = 6  # Few competitors is good (was 7)
+        competition_score = 7  # Few competitors is good
     elif num_competitors <= 7:
         competition_score = 10  # Moderate competition is ideal
     elif num_competitors <= 15:
         competition_score = 8  # More competition means established market
     else:
-        competition_score = 5  # Too much competition is challenging (was 6)
+        competition_score = 6  # Too much competition can be challenging
     
     # Keyword relevance score (0-10)
     keyword_relevance_score = min(10, keyword_relevance)
-    
-    # Coherence penalty - reduce scores if coherence is low
-    coherence_factor = coherence_score / 10  # 0.0 to 1.0
-    
-    # Red flag penalty - reduce scores based on number of red flags
-    red_flag_penalty = min(0.5, num_red_flags * 0.1)  # Up to 50% reduction for 5+ red flags
-    
-    # Apply coherence factor and red flag penalty
-    pain_score = pain_score * coherence_factor * (1 - red_flag_penalty)
-    excitement_score = excitement_score * coherence_factor * (1 - red_flag_penalty)
     
     # Calculate overall viability score (0-100)
     overall_score = (
@@ -722,59 +499,19 @@ def calculate_business_idea_scores(final_report):
     excitement_score = round(excitement_score, 1)
     competition_score = round(competition_score, 1)
     keyword_relevance_score = round(keyword_relevance_score, 1)
-    coherence_score = round(coherence_score, 1)
     overall_score = round(overall_score, 1)
-    
-    # Generate explanations for each score
-    score_explanations = {
-        "market_pain_score": f"Based on {num_pain_points} pain points with average relevance of {round(avg_pain_relevance, 1)}/10. " +
-                            (f"Score reduced by coherence factor ({coherence_score}/10)" if coherence_score < 9 else "") +
-                            (f" and red flag penalty ({num_red_flags} red flags)" if num_red_flags > 0 else ""),
-        
-        "market_interest_score": f"Based on {num_excitement} excitement signals with average relevance of {round(avg_excitement_relevance, 1)}/10. " +
-                                (f"Score reduced by coherence factor ({coherence_score}/10)" if coherence_score < 9 else "") +
-                                (f" and red flag penalty ({num_red_flags} red flags)" if num_red_flags > 0 else ""),
-        
-        "competition_score": (f"No competitors found, which might indicate no market exists." if num_competitors == 0 else
-                            f"Based on {num_competitors} competitors mentioned. " +
-                            ("Few competitors indicates potential opportunity." if num_competitors <= 3 else
-                             "Moderate competition indicates a validated market." if num_competitors <= 7 else
-                             "Established market with significant competition." if num_competitors <= 15 else
-                             "Highly competitive market may be challenging to enter.")),
-        
-        "keyword_relevance_score": f"Based on average of {round(keyword_relevance, 1)} findings per keyword across {len(keywords)} keywords.",
-        
-        "coherence_score": f"Measures consistency and coherence of findings. " +
-                          ("Low score indicates contradictory or inconsistent data." if coherence_score < 5 else
-                           "Moderate score indicates some inconsistencies in data." if coherence_score < 8 else
-                           "High score indicates consistent and coherent findings."),
-        
-        "overall_viability_score": f"Calculated from weighted component scores: " +
-                                  f"Pain Points ({SCORE_WEIGHTS['pain_points']*100}%), " +
-                                  f"Excitement ({SCORE_WEIGHTS['excitement_signals']*100}%), " +
-                                  f"Competition ({SCORE_WEIGHTS['competitors']*100}%), " +
-                                  f"Keyword Relevance ({SCORE_WEIGHTS['keyword_relevance']*100}%)." +
-                                  (f" Reduced by coherence factor and red flag penalty." if coherence_score < 9 or num_red_flags > 0 else "")
-    }
     
     return {
         "market_pain_score": pain_score,
         "market_interest_score": excitement_score,
         "competition_score": competition_score,
         "keyword_relevance_score": keyword_relevance_score,
-        "coherence_score": coherence_score,
         "overall_viability_score": overall_score,
         "raw_counts": {
             "pain_points": num_pain_points,
             "excitement_signals": num_excitement,
-            "competitors": num_competitors,
-            "red_flags": num_red_flags
-        },
-        "avg_relevance": {
-            "pain_points": round(avg_pain_relevance, 1),
-            "excitement_signals": round(avg_excitement_relevance, 1)
-        },
-        "score_explanations": score_explanations
+            "competitors": num_competitors
+        }
     }
 
 def generate_executive_summary(final_report, scores):
@@ -793,49 +530,27 @@ def generate_executive_summary(final_report, scores):
     business_idea = final_report["metadata"]["business_idea"]
     aggregated = final_report["aggregated_results"]
     
-    # Filter items by relevance threshold
-    relevant_pain_points = []
-    for item in aggregated.get("pain_points", []):
-        if isinstance(item, dict) and "relevance" in item and item["relevance"] >= MIN_RELEVANCE_THRESHOLD:
-            relevant_pain_points.append(item)
-        elif isinstance(item, str):  # Handle old format
-            relevant_pain_points.append({"text": item, "relevance": 5})
-    
-    relevant_excitement = []
-    for item in aggregated.get("excitement_signals", []):
-        if isinstance(item, dict) and "relevance" in item and item["relevance"] >= MIN_RELEVANCE_THRESHOLD:
-            relevant_excitement.append(item)
-        elif isinstance(item, str):  # Handle old format
-            relevant_excitement.append({"text": item, "relevance": 5})
-    
-    # Sort by relevance (highest first)
-    relevant_pain_points.sort(key=lambda x: x.get("relevance", 0), reverse=True)
-    relevant_excitement.sort(key=lambda x: x.get("relevance", 0), reverse=True)
-    
     # Get top pain points (up to 5)
-    top_pain_points = relevant_pain_points[:min(5, len(relevant_pain_points))]
+    top_pain_points = aggregated["pain_points"][:min(5, len(aggregated["pain_points"]))]
     
     # Get top excitement signals (up to 5)
-    top_excitement = relevant_excitement[:min(5, len(relevant_excitement))]
+    top_excitement = aggregated["excitement_signals"][:min(5, len(aggregated["excitement_signals"]))]
     
     # Get top competitors (up to 5)
     top_competitors = aggregated["mentions_of_competitors"][:min(5, len(aggregated["mentions_of_competitors"]))]
     
-    # Get top red flags (up to 3)
-    top_red_flags = aggregated.get("red_flags", [])[:min(3, len(aggregated.get("red_flags", [])))]
-    
-    # Determine market validation status based on overall score using the new thresholds
+    # Determine market validation status based on overall score
     overall_score = scores["overall_viability_score"]
-    if overall_score >= VALIDATION_THRESHOLDS["strongly_validated"]:
+    if overall_score >= 80:
         validation_status = "Strongly Validated"
         recommendation = "This business idea shows strong market validation. Consider proceeding with development and creating an MVP."
-    elif overall_score >= VALIDATION_THRESHOLDS["validated"]:
+    elif overall_score >= 65:
         validation_status = "Validated"
         recommendation = "This business idea shows good market validation. Consider proceeding with caution, focusing on the identified pain points."
-    elif overall_score >= VALIDATION_THRESHOLDS["partially_validated"]:
+    elif overall_score >= 50:
         validation_status = "Partially Validated"
         recommendation = "This business idea shows moderate market validation. Consider refining the concept based on the identified pain points and excitement signals."
-    elif overall_score >= VALIDATION_THRESHOLDS["weakly_validated"]:
+    elif overall_score >= 35:
         validation_status = "Weakly Validated"
         recommendation = "This business idea shows weak market validation. Consider pivoting or significantly refining the concept before proceeding."
     else:
@@ -874,8 +589,7 @@ def generate_executive_summary(final_report, scores):
         "top_excitement_signals": top_excitement,
         "top_competitors": top_competitors,
         "key_insights": insights,
-        "recommendation": recommendation,
-        "score_explanations": scores.get("score_explanations", {})
+        "recommendation": recommendation
     }
     
     return summary
@@ -899,62 +613,33 @@ def display_results(final_report, master_log_dir):
     
     print("\n--- Aggregated Results ---\n")
     
-    # Display pain points with relevance scores
     if aggregated["pain_points"]:
-        print("Pain Points:")
-        for item in aggregated["pain_points"]:
-            if isinstance(item, dict) and "text" in item and "relevance" in item:
-                print(f" - {item['text']} (Relevance: {item['relevance']}/10)")
-            elif isinstance(item, str):
-                print(f" - {item}")
+        print(f"Pain Points:\n - " + "\n - ".join(aggregated["pain_points"]))
     else:
         print("Pain Points: None found")
-    
-    # Display excitement signals with relevance scores
+        
     if aggregated["excitement_signals"]:
-        print("\nExcitement Signals:")
-        for item in aggregated["excitement_signals"]:
-            if isinstance(item, dict) and "text" in item and "relevance" in item:
-                print(f" - {item['text']} (Relevance: {item['relevance']}/10)")
-            elif isinstance(item, str):
-                print(f" - {item}")
+        print(f"\nExcitement Signals:\n - " + "\n - ".join(aggregated["excitement_signals"]))
     else:
         print("\nExcitement Signals: None found")
-    
-    # Display competitors
+        
     if aggregated["mentions_of_competitors"]:
         print(f"\nMentions of Competitors:\n - " + "\n - ".join(aggregated["mentions_of_competitors"]))
     else:
         print("\nMentions of Competitors: None found")
-    
-    # Display notable quotes
+        
     if aggregated["notable_quotes"]:
-        print("\nNotable Quotes:")
-        for item in aggregated["notable_quotes"]:
-            if isinstance(item, dict) and "text" in item:
-                print(f" - {item['text']}")
-            elif isinstance(item, str):
-                print(f" - {item}")
+        print(f"\nNotable Quotes:\n - " + "\n - ".join(aggregated["notable_quotes"]))
     else:
         print("\nNotable Quotes: None found")
-    
-    # Display red flags if any
-    if "red_flags" in aggregated and aggregated["red_flags"]:
-        print(f"\nRed Flags:\n - " + "\n - ".join(aggregated["red_flags"]))
-    
-    # Display coherence score if available
-    if "coherence_score" in aggregated:
-        print(f"\nCoherence Score: {aggregated['coherence_score']}/10")
     
     print("\n--- Results by Keyword ---")
     for keyword, results in final_report["keyword_results"].items():
         print(f"\n  {keyword}:")
         for key, items in results.items():
-            if items and key not in ["coherence_score"]:
+            if items:
                 print(f"    {key.replace('_', ' ').title()}: {len(items)} items")
-            elif key == "coherence_score":
-                print(f"    {key.replace('_', ' ').title()}: {items}/10")
-            elif items == 0:
+            else:
                 print(f"    {key.replace('_', ' ').title()}: None found")
     
     # Calculate scores
@@ -963,28 +648,16 @@ def display_results(final_report, master_log_dir):
     # Generate executive summary
     summary = generate_executive_summary(final_report, scores)
     
-    # Display scores with explanations
+    # Display scores
     print("\n" + "="*60)
     print("=== BUSINESS IDEA SCORECARD ===")
     print("="*60)
     
     print(f"\nMarket Pain Score: {scores['market_pain_score']}/10")
-    print(f"  Why: {scores['score_explanations']['market_pain_score']}")
-    
-    print(f"\nMarket Interest Score: {scores['market_interest_score']}/10")
-    print(f"  Why: {scores['score_explanations']['market_interest_score']}")
-    
-    print(f"\nCompetition Score: {scores['competition_score']}/10")
-    print(f"  Why: {scores['score_explanations']['competition_score']}")
-    
-    print(f"\nKeyword Relevance Score: {scores['keyword_relevance_score']}/10")
-    print(f"  Why: {scores['score_explanations']['keyword_relevance_score']}")
-    
-    print(f"\nCoherence Score: {scores['coherence_score']}/10")
-    print(f"  Why: {scores['score_explanations']['coherence_score']}")
-    
+    print(f"Market Interest Score: {scores['market_interest_score']}/10")
+    print(f"Competition Score: {scores['competition_score']}/10")
+    print(f"Keyword Relevance Score: {scores['keyword_relevance_score']}/10")
     print(f"\nOVERALL VIABILITY SCORE: {scores['overall_viability_score']}/100")
-    print(f"  Why: {scores['score_explanations']['overall_viability_score']}")
     
     # Display executive summary
     print("\n" + "="*60)
@@ -995,23 +668,11 @@ def display_results(final_report, master_log_dir):
     
     print("\nTop Pain Points:")
     for point in summary["top_pain_points"]:
-        if isinstance(point, dict) and "text" in point and "relevance" in point:
-            print(f" - {point['text']} (Relevance: {point['relevance']}/10)")
-        elif isinstance(point, str):
-            print(f" - {point}")
+        print(f" - {point}")
     
     print("\nTop Excitement Signals:")
     for signal in summary["top_excitement_signals"]:
-        if isinstance(signal, dict) and "text" in signal and "relevance" in signal:
-            print(f" - {signal['text']} (Relevance: {signal['relevance']}/10)")
-        elif isinstance(signal, str):
-            print(f" - {signal}")
-    
-    # Display red flags if any
-    if "red_flags" in aggregated and aggregated["red_flags"]:
-        print("\nRed Flags:")
-        for flag in aggregated["red_flags"][:min(3, len(aggregated["red_flags"]))]:
-            print(f" - {flag}")
+        print(f" - {signal}")
     
     print("\nKey Competitors:")
     for competitor in summary["top_competitors"]:

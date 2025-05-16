@@ -40,6 +40,7 @@ NUM_PAGES = 3  # how many pages per site to fetch (was 2)
 NUM_KEYWORDS = 5  # number of keywords to generate
 SOURCES = {
     "Reddit": "https://www.reddit.com/search/?q={query}&page={page}",
+    #"Quora": "https://www.quora.com/search?q={query}&page={page}",
     "ProductHunt": "https://www.producthunt.com/search?q={query}&page={page}",
     #"HackerNews": "https://hn.algolia.com/?q={query}&page={page}"
 }
