@@ -1,0 +1,351 @@
+[
+  {
+    "relevant": false,
+    "pain_points": [],
+    "solutions_mentioned": [],
+    "market_signals": [],
+    "sentiment": "neutral",
+    "engagement_score": 1
+  },
+  {
+    "relevant": true,
+    "pain_points": [
+      "Difficulty in creating engaging thumbnails",
+      "Time-consuming video editing process",
+      "Need for AI tools in content creation"
+    ],
+    "solutions_mentioned": [
+      "AI tool for generating thumbnails",
+      "AI companion for video enhancement",
+      "Assistance in video content creation"
+    ],
+    "market_signals": [
+      "Growing demand for AI tools in content creation",
+      "Interest in automation of video production tasks",
+      "Potential niche in assisting YouTubers"
+    ],
+    "sentiment": "neutral",
+    "engagement_score": 1
+  },
+  {
+    "relevant": true,
+    "pain_points": [
+      "time-consuming manual thumbnail creation",
+      "lack of design skills for video creators",
+      "need for eye-catching thumbnails to increase video views"
+    ],
+    "solutions_mentioned": [
+      "AI-powered thumbnail generation",
+      "automated design tools for creators"
+    ],
+    "market_signals": [
+      "growing demand for video content on platforms like YouTube",
+      "increased use of AI in creative industries",
+      "competition from existing design tools"
+    ],
+    "sentiment": "neutral",
+    "engagement_score": 1
+  },
+  {
+    "relevant": true,
+    "pain_points": [
+      "difficulty in creating eye-catching thumbnails",
+      "time-consuming manual design process",
+      "lack of design skills for content creators"
+    ],
+    "solutions_mentioned": [
+      "AI-generated thumbnails",
+      "automated design process",
+      "enhanced visual appeal with AI"
+    ],
+    "market_signals": [
+      "growing demand for video content tools",
+      "increased competition in AI design tools",
+      "trend towards automation in content creation"
+    ],
+    "sentiment": "neutral",
+    "engagement_score": 1
+  },
+  {
+    "relevant": true,
+    "pain_points": [
+      "Need for efficient thumbnail creation",
+      "Lack of design skills among content creators",
+      "Time-consuming process for generating thumbnails"
+    ],
+    "solutions_mentioned": [
+      "AI-generated thumbnails",
+      "Automated design tools"
+    ],
+    "market_signals": [
+      "Growing demand for YouTube content creation",
+      "Interest in AI tools for creative processes",
+      "Potential competition from existing design tools"
+    ],
+    "sentiment": "neutral",
+    "engagement_score": 1
+  },
+  {
+    "relevant": true,
+    "pain_points": [
+      "Time-consuming process of creating thumbnails",
+      "Difficulty in optimizing YouTube content",
+      "Need for effective content promotion"
+    ],
+    "solutions_mentioned": [
+      "AI-generated YouTube thumbnails",
+      "Auto-generation of YouTube titles and tags",
+      "Streamlining content creation workflows"
+    ],
+    "market_signals": [
+      "Growing interest in AI tools for content creation",
+      "Demand for automation in digital marketing",
+      "Competition in the AI-driven content optimization space"
+    ],
+    "sentiment": "neutral",
+    "engagement_score": 1
+  },
+  {
+    "relevant": true,
+    "pain_points": [
+      "time-consuming manual design",
+      "lack of design skills",
+      "need for engaging thumbnails"
+    ],
+    "solutions_mentioned": [
+      "AI-generated thumbnails",
+      "automated design tools"
+    ],
+    "market_signals": [
+      "growing demand for video content",
+      "increasing use of AI in design",
+      "competition in digital marketing tools"
+    ],
+    "sentiment": "neutral",
+    "engagement_score": 1
+  },
+  {
+    "relevant": true,
+    "pain_points": [
+      "Time-consuming manual design of thumbnails",
+      "Lack of design skills for content creators",
+      "Need for eye-catching visuals to increase video views"
+    ],
+    "solutions_mentioned": [
+      "AI-generated thumbnails",
+      "Rapid creation of thumbnails in seconds"
+    ],
+    "market_signals": [
+      "Growing demand for video content",
+      "Increasing use of AI in creative processes",
+      "Potential for competition with other AI design tools"
+    ],
+    "sentiment": "neutral",
+    "engagement_score": 1
+  },
+  {
+    "relevant": true,
+    "pain_points": [
+      "difficulty in creating eye-catching thumbnails",
+      "time-consuming manual design process",
+      "lack of design skills for content creators"
+    ],
+    "solutions_mentioned": [
+      "AI-generated thumbnails",
+      "automated design tools"
+    ],
+    "market_signals": [
+      "growing demand for video content",
+      "increasing use of AI in creative processes",
+      "need for efficient content creation tools"
+    ],
+    "sentiment": "neutral",
+    "engagement_score": 1
+  },
+  {
+    "relevant": true,
+    "pain_points": [
+      "difficulty in creating eye-catching thumbnails",
+      "time-consuming process for video creators",
+      "lack of design skills among content creators"
+    ],
+    "solutions_mentioned": [
+      "AI-generated thumbnails",
+      "automated design tool",
+      "user-friendly thumbnail creation"
+    ],
+    "market_signals": [
+      "growing trend of AI tools in content creation",
+      "increasing demand for video content optimization",
+      "potential competition from existing design tools"
+    ],
+    "sentiment": "neutral",
+    "engagement_score": 1
+  },
+  {
+    "relevant": true,
+    "pain_points": [
+      "time-consuming thumbnail creation",
+      "lack of design skills for creators",
+      "need for engaging thumbnails to increase views"
+    ],
+    "solutions_mentioned": [
+      "AI-generated thumbnails",
+      "automated design tools",
+      "enhancing visual appeal of content"
+    ],
+    "market_signals": [
+      "growing demand for video content",
+      "increasing use of AI in creative processes",
+      "competition with existing design tools"
+    ],
+    "sentiment": "neutral",
+    "engagement_score": 2
+  },
+  {
+    "relevant": false,
+    "pain_points": [],
+    "solutions_mentioned": [],
+    "market_signals": [
+      "interest in 3D models",
+      "visual content demand",
+      "screenshot API tools"
+    ],
+    "sentiment": "neutral",
+    "engagement_score": 1
+  },
+  {
+    "relevant": true,
+    "pain_points": [
+      "difficulty in creating engaging thumbnails",
+      "time-consuming design process",
+      "lack of graphic design skills"
+    ],
+    "solutions_mentioned": [
+      "AI-generated thumbnails",
+      "automated design tools"
+    ],
+    "market_signals": [
+      "increasing importance of video content",
+      "growing demand for efficient content creation tools",
+      "interest in AI-driven solutions"
+    ],
+    "sentiment": "neutral",
+    "engagement_score": 1
+  },
+  {
+    "relevant": false,
+    "pain_points": [],
+    "solutions_mentioned": [],
+    "market_signals": [],
+    "sentiment": "neutral",
+    "engagement_score": 1
+  },
+  {
+    "relevant": false,
+    "pain_points": [],
+    "solutions_mentioned": [],
+    "market_signals": [],
+    "sentiment": "neutral",
+    "engagement_score": 1
+  },
+  {
+    "relevant": false,
+    "pain_points": [],
+    "solutions_mentioned": [],
+    "market_signals": [],
+    "sentiment": "neutral",
+    "engagement_score": 1
+  },
+  {
+    "relevant": false,
+    "pain_points": [],
+    "solutions_mentioned": [],
+    "market_signals": [],
+    "sentiment": "neutral",
+    "engagement_score": 1
+  },
+  {
+    "relevant": true,
+    "pain_points": [
+      "Time-consuming manual creation of YouTube thumbnails",
+      "Difficulty in optimizing YouTube content for better visibility",
+      "The challenge of creating engaging and attractive thumbnails"
+    ],
+    "solutions_mentioned": [
+      "AI tool for auto-generating YouTube thumbnails",
+      "Automated creation of YouTube titles and tags",
+      "Comprehensive tool to enhance YouTube content visibility"
+    ],
+    "market_signals": [
+      "Growing trend of AI in content creation",
+      "Potential demand for automation in YouTube marketing",
+      "Emergence of similar AI-driven tools indicating competition"
+    ],
+    "sentiment": "neutral",
+    "engagement_score": 1
+  },
+  {
+    "relevant": true,
+    "pain_points": [
+      "difficulty in creating eye-catching thumbnails",
+      "time-consuming process for creators",
+      "lack of design skills among content creators"
+    ],
+    "solutions_mentioned": [
+      "AI-driven thumbnail generation",
+      "automated design process"
+    ],
+    "market_signals": [
+      "increasing demand for video content",
+      "growing trend of AI tools in creative processes",
+      "potential market competition from other AI design tools"
+    ],
+    "sentiment": "neutral",
+    "engagement_score": 1
+  },
+  {
+    "relevant": false,
+    "pain_points": [],
+    "solutions_mentioned": [],
+    "market_signals": [],
+    "sentiment": "neutral",
+    "engagement_score": 1
+  },
+  {
+    "relevant": true,
+    "pain_points": [
+      "difficulty in creating engaging YouTube thumbnails",
+      "time-consuming manual design process",
+      "lack of design skills among content creators"
+    ],
+    "solutions_mentioned": [
+      "AI tool for automated thumbnail generation",
+      "user-friendly design interface",
+      "customizable templates"
+    ],
+    "market_signals": [
+      "growing demand for video content on YouTube",
+      "increasing competition among content creators",
+      "rising trend of AI tools in creative industries"
+    ],
+    "sentiment": "neutral",
+    "engagement_score": 1
+  },
+  {
+    "relevant": false,
+    "pain_points": [],
+    "solutions_mentioned": [],
+    "market_signals": [],
+    "sentiment": "neutral",
+    "engagement_score": 1
+  },
+  {
+    "relevant": false,
+    "pain_points": [],
+    "solutions_mentioned": [],
+    "market_signals": [],
+    "sentiment": "neutral",
+    "engagement_score": 1
+  }
+]

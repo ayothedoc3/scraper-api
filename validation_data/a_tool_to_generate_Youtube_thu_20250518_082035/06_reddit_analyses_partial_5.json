@@ -1,0 +1,68 @@
+[
+  {
+    "relevant": true,
+    "pain_points": [],
+    "solutions_mentioned": [],
+    "market_signals": [
+      "demand"
+    ],
+    "sentiment": "neutral",
+    "engagement_score": 1,
+    "subreddit_context": "The audience consists of new and aspiring YouTubers looking for tools and resources to enhance their content creation process."
+  },
+  {
+    "relevant": true,
+    "pain_points": [],
+    "solutions_mentioned": [],
+    "market_signals": [
+      "interest in AI tools",
+      "potential demand for automation in content creation",
+      "curiosity about AI applications"
+    ],
+    "sentiment": "neutral",
+    "engagement_score": 1,
+    "subreddit_context": "The audience consists of new and aspiring YouTubers looking for tips, tools, and strategies to grow their channels. They may be interested in innovative solutions to improve video production and engagement."
+  },
+  {
+    "relevant": true,
+    "pain_points": [
+      "Unable to parse comments indicating potential API or structural issues on Reddit"
+    ],
+    "solutions_mentioned": [],
+    "market_signals": [
+      "Interest in AI tools for specific creative tasks",
+      "Potential demand for AI-driven thumbnail creation",
+      "Lack of detailed feedback due to no comments"
+    ],
+    "sentiment": "neutral",
+    "engagement_score": 1,
+    "subreddit_context": "The StableDiffusion subreddit is likely composed of users interested in AI, machine learning, and creative applications of technology. This audience may have a keen interest in AI tools that can assist in creative processes, indicating potential user interest in the tool."
+  },
+  {
+    "relevant": true,
+    "pain_points": [
+      "Lack of AI tools for generating thumbnails"
+    ],
+    "solutions_mentioned": [],
+    "market_signals": [
+      "Potential demand for AI-generated thumbnails",
+      "Interest in automating thumbnail creation"
+    ],
+    "sentiment": "neutral",
+    "engagement_score": 1,
+    "subreddit_context": "The subreddit consists of YouTube content creators looking for tools and strategies to enhance their video production and channel growth."
+  },
+  {
+    "relevant": true,
+    "pain_points": [],
+    "solutions_mentioned": [],
+    "market_signals": [
+      "interest in AI tools",
+      "potential competition with designers",
+      "engagement with AI-generated content"
+    ],
+    "sentiment": "neutral",
+    "engagement_score": 1,
+    "subreddit_context": "The YouTube subreddit is likely to consist of content creators and users interested in improving their video content, exploring new tools, and discussing trends in video production and promotion."
+  }
+]

@@ -1,0 +1,67 @@
+[
+  {
+    "relevant": true,
+    "pain_points": [
+      "Managing long hair while diving",
+      "Hair getting entangled in diving equipment",
+      "Difficulty maintaining hair underwater"
+    ],
+    "solutions_mentioned": [
+      "Using hair ties or bands",
+      "Wearing a diving hood",
+      "Braiding hair before diving"
+    ],
+    "market_signals": [
+      "Potential demand for hair management solutions for divers",
+      "Niche market of divers with long hair",
+      "Opportunities for innovative underwater grooming services"
+    ],
+    "sentiment": "neutral",
+    "engagement_score": 2,
+    "subreddit_context": "The audience consists of scuba diving enthusiasts, likely seeking practical advice and solutions for diving-related issues, including hair management."
+  },
+  {
+    "relevant": false,
+    "pain_points": [],
+    "solutions_mentioned": [],
+    "market_signals": [],
+    "sentiment": "neutral",
+    "engagement_score": 1,
+    "subreddit_context": "The subreddit is focused on scuba diving and related activities, indicating an audience interested in underwater experiences, but not necessarily in grooming or barbershops."
+  },
+  {
+    "relevant": false,
+    "pain_points": [],
+    "solutions_mentioned": [],
+    "market_signals": [],
+    "sentiment": "neutral",
+    "engagement_score": 1,
+    "subreddit_context": "The audience consists of scuba enthusiasts who may have specific concerns about hair management while diving, but the topic does not directly relate to an underwater barbershop concept."
+  },
+  {
+    "relevant": false,
+    "pain_points": [
+      "difficulty in cleaning clippers",
+      "concern about using water on clippers"
+    ],
+    "solutions_mentioned": [
+      "drying clippers immediately after using water"
+    ],
+    "market_signals": [
+      "interest in clipper maintenance",
+      "concerns about proper cleaning methods"
+    ],
+    "sentiment": "neutral",
+    "engagement_score": 1,
+    "subreddit_context": "The subreddit is focused on professionals and enthusiasts in the barber industry, discussing techniques, tools, and maintenance."
+  },
+  {
+    "relevant": false,
+    "pain_points": [],
+    "solutions_mentioned": [],
+    "market_signals": [],
+    "sentiment": "neutral",
+    "engagement_score": 1,
+    "subreddit_context": "The subreddit is focused on scuba diving enthusiasts, discussing topics related to diving experiences, equipment, and techniques. The audience is likely interested in underwater activities and may have insights into the practicalities of operating or experiencing services underwater."
+  }
+]
