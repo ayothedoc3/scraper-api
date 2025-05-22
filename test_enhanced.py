@@ -14,8 +14,8 @@ llm_instance = LLM.create(provider=LLMProvider.OPENAI,model_name="gpt-4o")
 
 
 # ========== CONFIG ==========
-SCRAPER_API_KEY = '57e9758e150311f9e07c9923e5731678'
-OPENAI_API_KEY = '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'
+SCRAPER_API_KEY = 'XXXX'
+OPENAI_API_KEY = 'sk-proj-XXXX'
 
 # Scoring weights
 SCORE_WEIGHTS = {
