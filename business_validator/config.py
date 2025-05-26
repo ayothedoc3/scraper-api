@@ -12,7 +12,13 @@ except ImportError:
     pass
 
 # API Keys
-SCRAPERAPI_KEY = os.getenv("SCRAPER_API_KEY", "your_scraper_api_key_here")
+SCRAPERAPI_KEY = os.getenv("SCRAPER_API_KEY")
+if not SCRAPERAPI_KEY:
+    raise ValueError("SCRAPERAPI_KEY environment variable not set")
+
+GOOGLE_API_KEY = os.getenv("GOOGLE_API_KEY")
+if not GOOGLE_API_KEY:
+    raise ValueError("GOOGLE_API_KEY environment variable not set")
 
 # HackerNews Configuration
 MAX_PAGES_PER_KEYWORD_HN = 3  # Number of pages to scrape per keyword on HN
