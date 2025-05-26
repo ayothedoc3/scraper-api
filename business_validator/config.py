@@ -4,8 +4,15 @@ Configuration settings for the business validator package.
 
 import os
 
+# Load environment variables
+try:
+    from dotenv import load_dotenv
+    load_dotenv()
+except ImportError:
+    pass
+
 # API Keys
-SCRAPERAPI_KEY = "57e9758e150311f9e07c9923e5731678"  # Replace with your ScraperAPI key
+SCRAPERAPI_KEY = os.getenv("SCRAPER_API_KEY", "your_scraper_api_key_here")
 
 # HackerNews Configuration
 MAX_PAGES_PER_KEYWORD_HN = 3  # Number of pages to scrape per keyword on HN

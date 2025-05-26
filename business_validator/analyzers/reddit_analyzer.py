@@ -3,69 +3,104 @@ Reddit post analysis functionality.
 """
 
 import logging
-from typing import Dict, List
-
-from SimplerLLM.language.llm import LLM, LLMProvider
-from SimplerLLM.language.llm_addons import generate_pydantic_json_model
+import os
+from typing import Dict
 
 from business_validator.models import RedditPostAnalysis
 
 # Use the same LLM instance as in keyword_generator
-from business_validator.analyzers.keyword_generator import llm_instance
+try:
+    from langchain_google_genai import ChatGoogleGenerativeAI
+    from langchain_core.output_parsers import PydanticOutputParser
+    from langchain_core.prompts import PromptTemplate
+    
+    # Get API key from environment
+    google_api_key = os.getenv("GOOGLE_API_KEY")
+    
+    if google_api_key and google_api_key != "your_google_api_key_here":
+        llm_instance = ChatGoogleGenerativeAI(
+            model="gemini-1.5-flash",
+            google_api_key=google_api_key,
+            temperature=0.7
+        )
+    else:
+        llm_instance = None
+        
+except Exception as e:
+    llm_instance = None
+    logging.warning(f"Could not initialize Google Gemini LLM in reddit_analyzer: {e}")
 
-def analyze_reddit_post(post: dict, comments: List[dict], business_idea: str) -> RedditPostAnalysis:
-    """Analyze a Reddit post and its comments for business validation.
+def analyze_reddit_post(post: dict, business_idea: str) -> RedditPostAnalysis:
+    """Analyze a single Reddit post for business validation.
     
     Args:
         post: Dictionary containing post information
-        comments: List of dictionaries containing comment information
         business_idea: The business idea being validated
         
     Returns:
         RedditPostAnalysis object with analysis results
     """
-    logging.info(f"Analyzing Reddit post: {post.get('title', '')[:50]}...")
+    logging.info(f"Analyzing Reddit post: {post['title'][:50]}...")
     
-    # Format comments for the prompt
-    comments_text = "\n".join([
-        f"- {c.get('text', '')} (upvotes: {c.get('upvotes', 0)})" 
-        for c in comments[:5]
-    ])
-    
-    prompt = f"""
-    Business Idea: "{business_idea}"
-    
-    Reddit Post:
-    Subreddit: {post.get('subreddit', 'Unknown')}
-    Title: {post.get('title', '')}
-    Upvotes: {post.get('upvotes', 0)}
-    Comments: {post.get('comments', 0)}
-    URL: {post.get('url', '')}
-    
-    Top Comments:
-    {comments_text}
-    
-    Analyze this Reddit post and comments for business validation:
-    
-    1. Is this relevant to validating the business idea? (true/false)
-    2. What pain points are mentioned in the post or comments?
-    3. What solutions are discussed or mentioned?
-    4. What market signals does this show? (demand, competition, user behavior, etc.)
-    5. What's the overall sentiment? (positive/negative/neutral)
-    6. Rate the engagement score 1-10 based on upvotes and comment quality
-    7. What does the subreddit context tell us about the audience?
-    
-    Reddit often has more detailed discussions than other platforms - look for nuanced insights.
-    """
+    if llm_instance is None:
+        logging.warning("LLM not available, returning default analysis")
+        return RedditPostAnalysis(
+            relevant=False,
+            pain_points=["LLM not available for analysis"],
+            solutions_mentioned=["LLM not available for analysis"],
+            market_signals=["LLM not available for analysis"],
+            sentiment="neutral",
+            engagement_score=0,
+            subreddit_context=""
+        )
     
     try:
-        analysis = generate_pydantic_json_model(
-            model_class=RedditPostAnalysis,
-            llm_instance=llm_instance,
-            prompt=prompt
+        # Set up the parser
+        parser = PydanticOutputParser(pydantic_object=RedditPostAnalysis)
+        
+        # Create the prompt template
+        prompt = PromptTemplate(
+            template="""Business Idea: "{business_idea}"
+
+Reddit Post:
+Title: {title}
+Subreddit: {subreddit}
+Score: {score}
+Comments: {num_comments}
+Content: {selftext}
+
+Analyze this Reddit post for business validation signals:
+
+1. Is this post relevant to validating the business idea? (true/false)
+2. What pain points are mentioned or implied?
+3. What solutions are discussed or mentioned?
+4. What market signals does this show? (demand, competition, trends, etc.)
+5. What's the overall sentiment? (positive/negative/neutral)
+6. Rate the engagement score 1-10 based on score and comments relative to typical Reddit posts
+7. What context does the subreddit provide about the target audience?
+
+Focus on extracting actionable insights for business validation.
+
+{format_instructions}""",
+            input_variables=["business_idea", "title", "subreddit", "score", "num_comments", "selftext"],
+            partial_variables={"format_instructions": parser.get_format_instructions()}
         )
         
+        # Create the chain
+        chain = prompt | llm_instance | parser
+        
+        # Analyze the post
+        analysis = chain.invoke({
+            "business_idea": business_idea,
+            "title": post['title'],
+            "subreddit": post.get('subreddit', 'unknown'),
+            "score": post.get('score', 0),
+            "num_comments": post.get('num_comments', 0),
+            "selftext": post.get('selftext', '')[:500]  # Limit content length
+        })
+        
         return analysis
+        
     except Exception as e:
         logging.error(f"Error analyzing Reddit post: {e}")
         # Return a default analysis if generation fails

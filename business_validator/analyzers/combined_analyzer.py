@@ -1,192 +1,229 @@
 """
-Combined analysis functionality for generating final business validation reports.
+Combined analysis functionality that synthesizes insights from multiple sources.
 """
 
 import logging
-from typing import List
+import os
+from typing import List, Dict, Any
 
-from SimplerLLM.language.llm import LLM, LLMProvider
-from SimplerLLM.language.llm_addons import generate_pydantic_json_model
-
-from business_validator.models import HNPostAnalysis, PlatformInsight, RedditPostAnalysis, CombinedAnalysis
+from business_validator.models import CombinedAnalysis, HNPostAnalysis, RedditPostAnalysis
 
 # Use the same LLM instance as in keyword_generator
-from business_validator.analyzers.keyword_generator import llm_instance
+try:
+    from langchain_google_genai import ChatGoogleGenerativeAI
+    from langchain_core.output_parsers import PydanticOutputParser
+    from langchain_core.prompts import PromptTemplate
+    
+    # Get API key from environment
+    google_api_key = os.getenv("GOOGLE_API_KEY")
+    
+    if google_api_key and google_api_key != "your_google_api_key_here":
+        llm_instance = ChatGoogleGenerativeAI(
+            model="gemini-1.5-flash",
+            google_api_key=google_api_key,
+            temperature=0.7
+        )
+    else:
+        llm_instance = None
+        
+except Exception as e:
+    llm_instance = None
+    logging.warning(f"Could not initialize Google Gemini LLM in combined_analyzer: {e}")
 
-def generate_final_analysis(
-    hn_analyses: List[HNPostAnalysis], 
-    reddit_analyses: List[RedditPostAnalysis], 
-    business_idea: str, 
-    keywords: List[str]
+def combine_analyses(
+    business_idea: str,
+    hn_analyses: List[HNPostAnalysis],
+    reddit_analyses: List[RedditPostAnalysis]
 ) -> CombinedAnalysis:
-    """Generate final business validation analysis from both HN and Reddit.
+    """Combine and synthesize analyses from multiple sources.
     
     Args:
+        business_idea: The business idea being validated
         hn_analyses: List of HackerNews post analyses
         reddit_analyses: List of Reddit post analyses
-        business_idea: The business idea being validated
-        keywords: The keywords used for searching
         
     Returns:
-        CombinedAnalysis object with final analysis results
+        CombinedAnalysis object with synthesized insights
     """
-    logging.info("Generating final combined analysis...")
+    logging.info("Combining analyses from multiple sources...")
     
-    # Prepare summaries
-    total_hn_posts = len(hn_analyses)
-    relevant_hn_posts = [a for a in hn_analyses if a.relevant]
-    total_reddit_posts = len(reddit_analyses)
-    relevant_reddit_posts = [a for a in reddit_analyses if a.relevant]
-    
-    prompt = f"""
-    Business Idea: "{business_idea}"
-    Keywords Searched: {', '.join(keywords)}
-    
-    Analysis Summary:
-    
-    HackerNews:
-    - Total posts analyzed: {total_hn_posts}
-    - Relevant posts found: {len(relevant_hn_posts)}
-    
-    Reddit:
-    - Total posts analyzed: {total_reddit_posts}
-    - Relevant posts found: {len(relevant_reddit_posts)}
-    
-    HackerNews Insights:
-    {chr(10).join([f"- Pain Points: {a.pain_points}, Solutions: {a.solutions_mentioned}, Sentiment: {a.sentiment}" for a in relevant_hn_posts[:5]])}
-    
-    Reddit Insights:
-    {chr(10).join([f"- Pain Points: {a.pain_points}, Solutions: {a.solutions_mentioned}, Subreddit: {a.subreddit_context}, Sentiment: {a.sentiment}" for a in relevant_reddit_posts[:5]])}
-    
-    Based on this combined HackerNews and Reddit validation research, provide:
-    
-    1. Overall validation score (1-100) where:
-       - 85+ = Strong market validation with clear demand
-       - 70-84 = Good validation with some concerns
-       - 50-69 = Mixed signals, needs more research
-       - 30-49 = Weak validation, major concerns
-       - 0-29 = Little to no validation found
-    
-    2. Market validation summary (2-3 sentences)
-    3. Key pain points discovered across both platforms
-    4. Existing solutions mentioned across both platforms
-    5. Market opportunities identified
-    6. Platform-specific insights as a list of objects, each with 'platform' (e.g., "HackerNews", "Reddit") and 'insights' (the specific insights for that platform)
-    7. Specific recommendations for moving forward
-    
-    Consider that HackerNews tends to have more technical/startup audience while Reddit has more diverse consumer perspectives.
-    """
+    if llm_instance is None:
+        logging.warning("LLM not available, returning basic combined analysis")
+        return _create_fallback_analysis(business_idea, hn_analyses, reddit_analyses)
     
     try:
-        final_analysis = generate_pydantic_json_model(
-            model_class=CombinedAnalysis,
-            llm_instance=llm_instance,
-            prompt=prompt
+        # Set up the parser
+        parser = PydanticOutputParser(pydantic_object=CombinedAnalysis)
+        
+        # Prepare the data for analysis
+        hn_summary = _summarize_hn_analyses(hn_analyses)
+        reddit_summary = _summarize_reddit_analyses(reddit_analyses)
+        
+        # Create the prompt template
+        prompt = PromptTemplate(
+            template="""Business Idea: "{business_idea}"
+
+HackerNews Analysis Summary:
+{hn_summary}
+
+Reddit Analysis Summary:
+{reddit_summary}
+
+Based on these analyses from multiple sources, provide a comprehensive business validation assessment:
+
+1. Overall validation score (1-10, where 10 means highly validated)
+2. Key pain points identified across all sources
+3. Existing solutions mentioned across all sources
+4. Market demand signals observed
+5. Competition level assessment
+6. Target audience insights
+7. Key recommendations for next steps
+8. Risk factors to consider
+
+Synthesize insights from both HackerNews and Reddit to provide actionable business intelligence.
+
+{format_instructions}""",
+            input_variables=["business_idea", "hn_summary", "reddit_summary"],
+            partial_variables={"format_instructions": parser.get_format_instructions()}
         )
         
-        return final_analysis
-    except Exception as e:
-        logging.error(f"Error generating final analysis: {e}")
-        # Create a fallback analysis
-        return create_fallback_analysis(hn_analyses, reddit_analyses, business_idea, keywords)
-
-def create_fallback_analysis(
-    hn_analyses: List[HNPostAnalysis], 
-    reddit_analyses: List[RedditPostAnalysis], 
-    business_idea: str, 
-    keywords: List[str]
-) -> CombinedAnalysis:
-    """Create a simplified analysis when the full analysis generation fails.
-    
-    Args:
-        hn_analyses: List of HackerNews post analyses
-        reddit_analyses: List of Reddit post analyses
-        business_idea: The business idea being validated
-        keywords: The keywords used for searching
+        # Create the chain
+        chain = prompt | llm_instance | parser
         
-    Returns:
-        CombinedAnalysis object with simplified analysis results
+        # Generate combined analysis
+        analysis = chain.invoke({
+            "business_idea": business_idea,
+            "hn_summary": hn_summary,
+            "reddit_summary": reddit_summary
+        })
+        
+        return analysis
+        
+    except Exception as e:
+        logging.error(f"Error combining analyses: {e}")
+        return _create_fallback_analysis(business_idea, hn_analyses, reddit_analyses)
+
+def _summarize_hn_analyses(analyses: List[HNPostAnalysis]) -> str:
+    """Create a summary of HackerNews analyses."""
+    if not analyses:
+        return "No HackerNews analyses available."
+    
+    relevant_count = sum(1 for a in analyses if a.relevant)
+    total_count = len(analyses)
+    
+    all_pain_points = []
+    all_solutions = []
+    all_signals = []
+    
+    for analysis in analyses:
+        if analysis.relevant:
+            all_pain_points.extend(analysis.pain_points)
+            all_solutions.extend(analysis.solutions_mentioned)
+            all_signals.extend(analysis.market_signals)
+    
+    return f"""
+    Total posts analyzed: {total_count}
+    Relevant posts: {relevant_count}
+    Common pain points: {', '.join(set(all_pain_points[:5]))}
+    Solutions mentioned: {', '.join(set(all_solutions[:5]))}
+    Market signals: {', '.join(set(all_signals[:5]))}
     """
-    logging.info("Creating fallback analysis...")
+
+def _summarize_reddit_analyses(analyses: List[RedditPostAnalysis]) -> str:
+    """Create a summary of Reddit analyses."""
+    if not analyses:
+        return "No Reddit analyses available."
     
-    # Count relevant posts
-    relevant_hn_posts = [a for a in hn_analyses if a.relevant]
-    relevant_reddit_posts = [a for a in reddit_analyses if a.relevant]
+    relevant_count = sum(1 for a in analyses if a.relevant)
+    total_count = len(analyses)
     
-    # Collect pain points and solutions
+    all_pain_points = []
+    all_solutions = []
+    all_signals = []
+    subreddits = []
+    
+    for analysis in analyses:
+        if analysis.relevant:
+            all_pain_points.extend(analysis.pain_points)
+            all_solutions.extend(analysis.solutions_mentioned)
+            all_signals.extend(analysis.market_signals)
+            if analysis.subreddit_context:
+                subreddits.append(analysis.subreddit_context)
+    
+    return f"""
+    Total posts analyzed: {total_count}
+    Relevant posts: {relevant_count}
+    Common pain points: {', '.join(set(all_pain_points[:5]))}
+    Solutions mentioned: {', '.join(set(all_solutions[:5]))}
+    Market signals: {', '.join(set(all_signals[:5]))}
+    Subreddit contexts: {', '.join(set(subreddits[:3]))}
+    """
+
+def _create_fallback_analysis(
+    business_idea: str,
+    hn_analyses: List[HNPostAnalysis],
+    reddit_analyses: List[RedditPostAnalysis]
+) -> CombinedAnalysis:
+    """Create a basic fallback analysis when LLM is not available."""
+    
+    # Basic aggregation
+    total_relevant = sum(1 for a in hn_analyses if a.relevant) + sum(1 for a in reddit_analyses if a.relevant)
+    total_posts = len(hn_analyses) + len(reddit_analyses)
+    
+    # Simple validation score based on relevance ratio
+    validation_score = min(10, max(1, int((total_relevant / max(total_posts, 1)) * 10)))
+    
+    # Aggregate pain points and solutions
     all_pain_points = []
     all_solutions = []
     
-    for analysis in relevant_hn_posts:
-        all_pain_points.extend(analysis.pain_points)
-        all_solutions.extend(analysis.solutions_mentioned)
-    
-    for analysis in relevant_reddit_posts:
-        all_pain_points.extend(analysis.pain_points)
-        all_solutions.extend(analysis.solutions_mentioned)
-    
-    # Remove duplicates and limit length
-    unique_pain_points = list(set(all_pain_points))[:10]
-    unique_solutions = list(set(all_solutions))[:10]
-    
-    # Calculate a basic score
-    relevance_ratio = (len(relevant_hn_posts) + len(relevant_reddit_posts)) / max(1, len(hn_analyses) + len(reddit_analyses))
-    basic_score = min(100, int(relevance_ratio * 100))
-    
-    # Create platform insights
-    platform_insights = [
-        PlatformInsight(
-            platform="HackerNews",
-            insights=f"Found {len(relevant_hn_posts)} relevant posts out of {len(hn_analyses)} total"
-        ),
-        PlatformInsight(
-            platform="Reddit",
-            insights=f"Found {len(relevant_reddit_posts)} relevant posts out of {len(reddit_analyses)} total"
-        )
-    ]
-    
-    # Create a basic summary
-    summary = f"Analysis found {len(relevant_hn_posts) + len(relevant_reddit_posts)} relevant posts across HackerNews and Reddit. "
-    summary += f"The idea shows {basic_score}% relevance based on available data. "
-    summary += "Note: This is a fallback analysis due to an error in the full analysis generation."
+    for analysis in hn_analyses + reddit_analyses:
+        if hasattr(analysis, 'relevant') and analysis.relevant:
+            all_pain_points.extend(analysis.pain_points)
+            all_solutions.extend(analysis.solutions_mentioned)
     
     return CombinedAnalysis(
-        overall_score=basic_score,
-        market_validation_summary=summary,
-        key_pain_points=unique_pain_points if unique_pain_points else ["No clear pain points identified"],
-        existing_solutions=unique_solutions if unique_solutions else ["No clear solutions identified"],
-        market_opportunities=["Review the collected data for opportunities"],
-        platform_insights=platform_insights,
-        recommendations=[
-            "Review the individual post analyses for more detailed insights",
-            "Consider refining the business idea based on the pain points identified",
-            "Try running the analysis again with more focused keywords"
-        ]
+        validation_score=validation_score,
+        key_pain_points=list(set(all_pain_points[:5])),
+        existing_solutions=list(set(all_solutions[:5])),
+        market_demand_signals=["Basic analysis - LLM not available"],
+        competition_level="Unknown - LLM not available",
+        target_audience_insights=["Basic analysis - LLM not available"],
+        recommendations=["Get proper LLM access for detailed analysis"],
+        risk_factors=["Limited analysis due to LLM unavailability"]
     )
 
-def create_minimal_analysis(business_idea: str, data_dir: str) -> CombinedAnalysis:
-    """Create a minimal analysis from whatever checkpoint data is available.
-    
-    Args:
-        business_idea: The business idea being validated
-        data_dir: The directory containing checkpoint data
-        
-    Returns:
-        CombinedAnalysis object with minimal analysis results
-    """
-    logging.info("Creating minimal analysis from available checkpoint data...")
-    
-    # Create a minimal analysis when all else fails
+def generate_final_analysis(
+    hn_analyses: List[HNPostAnalysis],
+    reddit_analyses: List[RedditPostAnalysis],
+    business_idea: str,
+    keywords: List[str] = None
+) -> CombinedAnalysis:
+    """Generate final analysis - alias for combine_analyses for backward compatibility."""
+    return combine_analyses(business_idea, hn_analyses, reddit_analyses)
+
+def create_fallback_analysis(
+    hn_analyses: List[HNPostAnalysis],
+    reddit_analyses: List[RedditPostAnalysis],
+    business_idea: str,
+    keywords: List[str] = None
+) -> CombinedAnalysis:
+    """Create fallback analysis - public interface for _create_fallback_analysis."""
+    if hn_analyses is None:
+        hn_analyses = []
+    if reddit_analyses is None:
+        reddit_analyses = []
+    return _create_fallback_analysis(business_idea, hn_analyses, reddit_analyses)
+
+def create_minimal_analysis(business_idea: str) -> CombinedAnalysis:
+    """Create minimal analysis when no data is available."""
     return CombinedAnalysis(
-        overall_score=10,  # Very low score since analysis is incomplete
-        market_validation_summary=f"Analysis for '{business_idea}' was interrupted. This is a minimal report based on limited data.",
-        key_pain_points=["Analysis incomplete - review collected data"],
-        existing_solutions=["Analysis incomplete - review collected data"],
-        market_opportunities=["Analysis incomplete - review collected data"],
-        platform_insights=[PlatformInsight(platform="Error", insights="Analysis was interrupted")],
-        recommendations=[
-            f"Review the data in {data_dir} for partial insights",
-            "Try running the analysis again with fewer keywords",
-            "Consider breaking the analysis into smaller parts"
-        ]
+        validation_score=1,
+        key_pain_points=["No data available for analysis"],
+        existing_solutions=["No data available for analysis"],
+        market_demand_signals=["No data available for analysis"],
+        competition_level="Unknown - no data available",
+        target_audience_insights=["No data available for analysis"],
+        recommendations=["Gather more data for proper analysis"],
+        risk_factors=["Insufficient data for validation"]
     )

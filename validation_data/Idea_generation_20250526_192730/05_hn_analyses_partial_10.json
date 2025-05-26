@@ -1,0 +1,119 @@
+[
+  {
+    "relevant": false,
+    "pain_points": [],
+    "solutions_mentioned": [],
+    "market_signals": [],
+    "sentiment": "neutral",
+    "engagement_score": 1
+  },
+  {
+    "relevant": true,
+    "pain_points": [
+      "Struggling to come up with product ideas"
+    ],
+    "solutions_mentioned": [],
+    "market_signals": [
+      "Demand for a solution to help with idea generation is implied by the post itself.",
+      "The lack of engagement suggests either low interest in this specific problem or that the problem is too broad/niche for HN's audience.",
+      "Competition is not explicitly mentioned, but the lack of engagement suggests existing solutions might already address this need, or the need itself is not widely felt."
+    ],
+    "sentiment": "Negative",
+    "engagement_score": 1
+  },
+  {
+    "relevant": false,
+    "pain_points": [],
+    "solutions_mentioned": [],
+    "market_signals": [],
+    "sentiment": "neutral",
+    "engagement_score": 1
+  },
+  {
+    "relevant": true,
+    "pain_points": [
+      "Struggling with content ideas"
+    ],
+    "solutions_mentioned": [
+      "Free tool to generate personalized suggestions"
+    ],
+    "market_signals": [
+      "Potential demand for content idea generation tools",
+      "Low initial engagement suggests either low demand or poor presentation/title",
+      "Lack of comments indicates a need for further investigation into the specific problems faced by the target audience"
+    ],
+    "sentiment": "Neutral",
+    "engagement_score": 1
+  },
+  {
+    "relevant": false,
+    "pain_points": [],
+    "solutions_mentioned": [],
+    "market_signals": [],
+    "sentiment": "neutral",
+    "engagement_score": 1
+  },
+  {
+    "relevant": true,
+    "pain_points": [
+      "Struggling with gift ideas"
+    ],
+    "solutions_mentioned": [
+      "AI that finds the best gift"
+    ],
+    "market_signals": [
+      "Potential demand for AI-powered gift recommendation tools",
+      "Lack of immediate engagement suggests either low interest or poor post presentation/title",
+      "No visible competition mentioned in the post"
+    ],
+    "sentiment": "Neutral",
+    "engagement_score": 1
+  },
+  {
+    "relevant": false,
+    "pain_points": [],
+    "solutions_mentioned": [],
+    "market_signals": [],
+    "sentiment": "neutral",
+    "engagement_score": 1
+  },
+  {
+    "relevant": true,
+    "pain_points": [
+      "Struggling to come up with creative ideas"
+    ],
+    "solutions_mentioned": [
+      "Doing This"
+    ],
+    "market_signals": [
+      "Demand for idea generation techniques is implied by the post title and the fact someone posted it seeking help.",
+      "No direct information on competition or specific trends is provided."
+    ],
+    "sentiment": "Negative (reflecting the pain point of struggling with idea generation)",
+    "engagement_score": 1
+  },
+  {
+    "relevant": false,
+    "pain_points": [],
+    "solutions_mentioned": [],
+    "market_signals": [],
+    "sentiment": "neutral",
+    "engagement_score": 1
+  },
+  {
+    "relevant": true,
+    "pain_points": [
+      "Wanting to change careers",
+      "Uncertainty about career transition",
+      "Lack of direction in career change"
+    ],
+    "solutions_mentioned": [],
+    "market_signals": [
+      "Demand for career change resources (implied)",
+      "Potential competition from existing career coaching/advice platforms (implied)",
+      "Trend of individuals seeking career changes (explicit)"
+    ],
+    "sentiment": "Neutral",
+    "engagement_score": 1
+  }
+]

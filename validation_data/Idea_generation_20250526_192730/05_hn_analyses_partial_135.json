@@ -1,0 +1,1716 @@
+[
+  {
+    "relevant": false,
+    "pain_points": [],
+    "solutions_mentioned": [],
+    "market_signals": [],
+    "sentiment": "neutral",
+    "engagement_score": 1
+  },
+  {
+    "relevant": true,
+    "pain_points": [
+      "Struggling to come up with product ideas"
+    ],
+    "solutions_mentioned": [],
+    "market_signals": [
+      "Demand for a solution to help with idea generation is implied by the post itself.",
+      "The lack of engagement suggests either low interest in this specific problem or that the problem is too broad/niche for HN's audience.",
+      "Competition is not explicitly mentioned, but the lack of engagement suggests existing solutions might already address this need, or the need itself is not widely felt."
+    ],
+    "sentiment": "Negative",
+    "engagement_score": 1
+  },
+  {
+    "relevant": false,
+    "pain_points": [],
+    "solutions_mentioned": [],
+    "market_signals": [],
+    "sentiment": "neutral",
+    "engagement_score": 1
+  },
+  {
+    "relevant": true,
+    "pain_points": [
+      "Struggling with content ideas"
+    ],
+    "solutions_mentioned": [
+      "Free tool to generate personalized suggestions"
+    ],
+    "market_signals": [
+      "Potential demand for content idea generation tools",
+      "Low initial engagement suggests either low demand or poor presentation/title",
+      "Lack of comments indicates a need for further investigation into the specific problems faced by the target audience"
+    ],
+    "sentiment": "Neutral",
+    "engagement_score": 1
+  },
+  {
+    "relevant": false,
+    "pain_points": [],
+    "solutions_mentioned": [],
+    "market_signals": [],
+    "sentiment": "neutral",
+    "engagement_score": 1
+  },
+  {
+    "relevant": true,
+    "pain_points": [
+      "Struggling with gift ideas"
+    ],
+    "solutions_mentioned": [
+      "AI that finds the best gift"
+    ],
+    "market_signals": [
+      "Potential demand for AI-powered gift recommendation tools",
+      "Lack of immediate engagement suggests either low interest or poor post presentation/title",
+      "No visible competition mentioned in the post"
+    ],
+    "sentiment": "Neutral",
+    "engagement_score": 1
+  },
+  {
+    "relevant": false,
+    "pain_points": [],
+    "solutions_mentioned": [],
+    "market_signals": [],
+    "sentiment": "neutral",
+    "engagement_score": 1
+  },
+  {
+    "relevant": true,
+    "pain_points": [
+      "Struggling to come up with creative ideas"
+    ],
+    "solutions_mentioned": [
+      "Doing This"
+    ],
+    "market_signals": [
+      "Demand for idea generation techniques is implied by the post title and the fact someone posted it seeking help.",
+      "No direct information on competition or specific trends is provided."
+    ],
+    "sentiment": "Negative (reflecting the pain point of struggling with idea generation)",
+    "engagement_score": 1
+  },
+  {
+    "relevant": false,
+    "pain_points": [],
+    "solutions_mentioned": [],
+    "market_signals": [],
+    "sentiment": "neutral",
+    "engagement_score": 1
+  },
+  {
+    "relevant": true,
+    "pain_points": [
+      "Wanting to change careers",
+      "Uncertainty about career transition",
+      "Lack of direction in career change"
+    ],
+    "solutions_mentioned": [],
+    "market_signals": [
+      "Demand for career change resources (implied)",
+      "Potential competition from existing career coaching/advice platforms (implied)",
+      "Trend of individuals seeking career changes (explicit)"
+    ],
+    "sentiment": "Neutral",
+    "engagement_score": 1
+  },
+  {
+    "relevant": false,
+    "pain_points": [],
+    "solutions_mentioned": [],
+    "market_signals": [],
+    "sentiment": "neutral",
+    "engagement_score": 1
+  },
+  {
+    "relevant": true,
+    "pain_points": [
+      "Struggling with half-baked ideas at an older age.",
+      "Difficulty prioritizing and focusing on fewer ideas.",
+      "Potential for wasted time and energy on unproductive pursuits.",
+      "Feeling overwhelmed by numerous incomplete projects."
+    ],
+    "solutions_mentioned": [
+      "Quitting (going cold turkey) on half-baked ideas."
+    ],
+    "market_signals": [
+      "Implied demand for idea prioritization and management techniques.",
+      "Potential market for tools or services that help filter and refine ideas.",
+      "Low engagement suggests the problem might not be widely discussed or considered a major issue by the HN audience (which skews towards tech-savvy individuals)."
+    ],
+    "sentiment": "Neutral",
+    "engagement_score": 1
+  },
+  {
+    "relevant": false,
+    "pain_points": [],
+    "solutions_mentioned": [],
+    "market_signals": [],
+    "sentiment": "neutral",
+    "engagement_score": 1
+  },
+  {
+    "relevant": true,
+    "pain_points": [
+      "Complacency",
+      "Lack of motivation",
+      "Inability to generate new ideas"
+    ],
+    "solutions_mentioned": [],
+    "market_signals": [
+      "Demand for solutions to overcome complacency and improve idea generation (implied by the post's existence)",
+      "Potential market for tools or services aimed at boosting creativity and overcoming creative blocks",
+      "Low initial engagement suggests either a niche problem or difficulty in articulating the problem effectively."
+    ],
+    "sentiment": "Neutral",
+    "engagement_score": 1
+  },
+  {
+    "relevant": false,
+    "pain_points": [],
+    "solutions_mentioned": [],
+    "market_signals": [],
+    "sentiment": "neutral",
+    "engagement_score": 1
+  },
+  {
+    "relevant": true,
+    "pain_points": [
+      "Lack of readily available DevOps solutions tailored to lifestyle businesses.",
+      "Difficulty managing infrastructure and operations for smaller businesses with limited resources.",
+      "Need for simplified, cost-effective DevOps solutions."
+    ],
+    "solutions_mentioned": [],
+    "market_signals": [
+      "Potential demand for a niche DevOps service targeting lifestyle businesses.",
+      "Low initial engagement suggests either low demand or poor post framing/targeting.",
+      "Absence of competing solutions mentioned implies either a gap in the market or lack of awareness."
+    ],
+    "sentiment": "Neutral",
+    "engagement_score": 1
+  },
+  {
+    "relevant": false,
+    "pain_points": [],
+    "solutions_mentioned": [],
+    "market_signals": [],
+    "sentiment": "neutral",
+    "engagement_score": 1
+  },
+  {
+    "relevant": true,
+    "pain_points": [
+      "Difficulty in generating data-driven reports",
+      "Lack of efficient tools for report creation"
+    ],
+    "solutions_mentioned": [
+      "Building a tool called 'Cursor' for data-driven reports"
+    ],
+    "market_signals": [
+      "Zero points and comments suggest low initial interest or poor presentation.",
+      "The lack of engagement indicates a potential need for improved marketing or a less compelling value proposition.",
+      "Absence of discussion doesn't necessarily invalidate the need; it highlights the need for stronger communication of the problem and solution."
+    ],
+    "sentiment": "Neutral",
+    "engagement_score": 1
+  },
+  {
+    "relevant": false,
+    "pain_points": [],
+    "solutions_mentioned": [],
+    "market_signals": [],
+    "sentiment": "neutral",
+    "engagement_score": 1
+  },
+  {
+    "relevant": true,
+    "pain_points": [
+      "Struggling with Christmas gifts"
+    ],
+    "solutions_mentioned": [
+      "Visual gift-finding app"
+    ],
+    "market_signals": [
+      "Implied demand for easier gift-finding solutions,  lack of visible competition (zero comments could indicate a niche or lack of interest)",
+      "Potential seasonal demand (Christmas mentioned)"
+    ],
+    "sentiment": "Neutral",
+    "engagement_score": 1
+  },
+  {
+    "relevant": false,
+    "pain_points": [],
+    "solutions_mentioned": [],
+    "market_signals": [],
+    "sentiment": "neutral",
+    "engagement_score": 1
+  },
+  {
+    "relevant": false,
+    "pain_points": [],
+    "solutions_mentioned": [],
+    "market_signals": [],
+    "sentiment": "neutral",
+    "engagement_score": 1
+  },
+  {
+    "relevant": false,
+    "pain_points": [],
+    "solutions_mentioned": [],
+    "market_signals": [],
+    "sentiment": "neutral",
+    "engagement_score": 1
+  },
+  {
+    "relevant": false,
+    "pain_points": [],
+    "solutions_mentioned": [],
+    "market_signals": [],
+    "sentiment": "neutral",
+    "engagement_score": 1
+  },
+  {
+    "relevant": false,
+    "pain_points": [],
+    "solutions_mentioned": [],
+    "market_signals": [],
+    "sentiment": "neutral",
+    "engagement_score": 1
+  },
+  {
+    "relevant": true,
+    "pain_points": [
+      "The inconvenience of switching between different tools for wireframing and other tasks.",
+      "The lack of a quick and easy way to sketch wireframes directly within the context of web browsing or other applications."
+    ],
+    "solutions_mentioned": [
+      "A Chrome extension that allows users to sketch wireframes directly in their browser."
+    ],
+    "market_signals": [
+      "Implied demand for a quick and efficient wireframing solution integrated into the workflow.",
+      "Low engagement suggests either a niche market or a solution not yet addressing a significant pain point effectively.",
+      "Absence of discussion indicates a lack of immediate widespread interest or existing similar solutions."
+    ],
+    "sentiment": "Neutral",
+    "engagement_score": 1
+  },
+  {
+    "relevant": false,
+    "pain_points": [],
+    "solutions_mentioned": [],
+    "market_signals": [],
+    "sentiment": "neutral",
+    "engagement_score": 1
+  },
+  {
+    "relevant": true,
+    "pain_points": [
+      "Lack of productivity",
+      "Difficulty building good habits"
+    ],
+    "solutions_mentioned": [
+      "Chrome extension for productivity and habit building"
+    ],
+    "market_signals": [
+      "Potential demand for productivity tools (indicated by the post's existence, although zero engagement suggests limited immediate market validation)",
+      "High competition in the productivity app/extension space (implied by the need to stand out to gain traction on HN)",
+      "Trend towards habit-building apps and tools"
+    ],
+    "sentiment": "Neutral",
+    "engagement_score": 1
+  },
+  {
+    "relevant": false,
+    "pain_points": [],
+    "solutions_mentioned": [],
+    "market_signals": [],
+    "sentiment": "neutral",
+    "engagement_score": 1
+  },
+  {
+    "relevant": true,
+    "pain_points": [
+      "Lack of SaaS app ideas",
+      "Difficulty finding a profitable niche",
+      "Uncertainty about market demand"
+    ],
+    "solutions_mentioned": [],
+    "market_signals": [
+      "Potential demand for SaaS apps exists, as evidenced by the post itself.",
+      "The lack of engagement suggests either a saturated market or a lack of clearly defined problems.",
+      "The post's low score indicates low initial interest in the general topic of new SaaS app ideas."
+    ],
+    "sentiment": "neutral",
+    "engagement_score": 1
+  },
+  {
+    "relevant": false,
+    "pain_points": [],
+    "solutions_mentioned": [],
+    "market_signals": [],
+    "sentiment": "neutral",
+    "engagement_score": 1
+  },
+  {
+    "relevant": true,
+    "pain_points": [
+      "High cost of human customer support for SaaS companies",
+      "Inefficiency of human customer support",
+      "Scaling customer support as a SaaS company grows",
+      "24/7 availability of support"
+    ],
+    "solutions_mentioned": [
+      "AI-powered customer support"
+    ],
+    "market_signals": [
+      "Implied demand for efficient and scalable customer support solutions in the SaaS industry",
+      "Zero engagement suggests either a lack of interest or a saturated market (needs further investigation)",
+      "No direct mention of competitors, but the lack of engagement hints at potential existing solutions or a niche too small to generate interest on HN"
+    ],
+    "sentiment": "Neutral",
+    "engagement_score": 1
+  },
+  {
+    "relevant": false,
+    "pain_points": [
+      "Analysis failed"
+    ],
+    "solutions_mentioned": [
+      "Analysis failed"
+    ],
+    "market_signals": [
+      "Analysis failed"
+    ],
+    "sentiment": "neutral",
+    "engagement_score": 0
+  },
+  {
+    "relevant": false,
+    "pain_points": [
+      "Analysis failed"
+    ],
+    "solutions_mentioned": [
+      "Analysis failed"
+    ],
+    "market_signals": [
+      "Analysis failed"
+    ],
+    "sentiment": "neutral",
+    "engagement_score": 0
+  },
+  {
+    "relevant": false,
+    "pain_points": [
+      "Analysis failed"
+    ],
+    "solutions_mentioned": [
+      "Analysis failed"
+    ],
+    "market_signals": [
+      "Analysis failed"
+    ],
+    "sentiment": "neutral",
+    "engagement_score": 0
+  },
+  {
+    "relevant": false,
+    "pain_points": [
+      "Analysis failed"
+    ],
+    "solutions_mentioned": [
+      "Analysis failed"
+    ],
+    "market_signals": [
+      "Analysis failed"
+    ],
+    "sentiment": "neutral",
+    "engagement_score": 0
+  },
+  {
+    "relevant": false,
+    "pain_points": [
+      "Analysis failed"
+    ],
+    "solutions_mentioned": [
+      "Analysis failed"
+    ],
+    "market_signals": [
+      "Analysis failed"
+    ],
+    "sentiment": "neutral",
+    "engagement_score": 0
+  },
+  {
+    "relevant": false,
+    "pain_points": [
+      "Analysis failed"
+    ],
+    "solutions_mentioned": [
+      "Analysis failed"
+    ],
+    "market_signals": [
+      "Analysis failed"
+    ],
+    "sentiment": "neutral",
+    "engagement_score": 0
+  },
+  {
+    "relevant": false,
+    "pain_points": [
+      "Analysis failed"
+    ],
+    "solutions_mentioned": [
+      "Analysis failed"
+    ],
+    "market_signals": [
+      "Analysis failed"
+    ],
+    "sentiment": "neutral",
+    "engagement_score": 0
+  },
+  {
+    "relevant": false,
+    "pain_points": [
+      "Analysis failed"
+    ],
+    "solutions_mentioned": [
+      "Analysis failed"
+    ],
+    "market_signals": [
+      "Analysis failed"
+    ],
+    "sentiment": "neutral",
+    "engagement_score": 0
+  },
+  {
+    "relevant": false,
+    "pain_points": [
+      "Analysis failed"
+    ],
+    "solutions_mentioned": [
+      "Analysis failed"
+    ],
+    "market_signals": [
+      "Analysis failed"
+    ],
+    "sentiment": "neutral",
+    "engagement_score": 0
+  },
+  {
+    "relevant": false,
+    "pain_points": [
+      "Analysis failed"
+    ],
+    "solutions_mentioned": [
+      "Analysis failed"
+    ],
+    "market_signals": [
+      "Analysis failed"
+    ],
+    "sentiment": "neutral",
+    "engagement_score": 0
+  },
+  {
+    "relevant": false,
+    "pain_points": [
+      "Analysis failed"
+    ],
+    "solutions_mentioned": [
+      "Analysis failed"
+    ],
+    "market_signals": [
+      "Analysis failed"
+    ],
+    "sentiment": "neutral",
+    "engagement_score": 0
+  },
+  {
+    "relevant": false,
+    "pain_points": [
+      "Analysis failed"
+    ],
+    "solutions_mentioned": [
+      "Analysis failed"
+    ],
+    "market_signals": [
+      "Analysis failed"
+    ],
+    "sentiment": "neutral",
+    "engagement_score": 0
+  },
+  {
+    "relevant": false,
+    "pain_points": [
+      "Analysis failed"
+    ],
+    "solutions_mentioned": [
+      "Analysis failed"
+    ],
+    "market_signals": [
+      "Analysis failed"
+    ],
+    "sentiment": "neutral",
+    "engagement_score": 0
+  },
+  {
+    "relevant": false,
+    "pain_points": [
+      "Analysis failed"
+    ],
+    "solutions_mentioned": [
+      "Analysis failed"
+    ],
+    "market_signals": [
+      "Analysis failed"
+    ],
+    "sentiment": "neutral",
+    "engagement_score": 0
+  },
+  {
+    "relevant": false,
+    "pain_points": [],
+    "solutions_mentioned": [],
+    "market_signals": [],
+    "sentiment": "neutral",
+    "engagement_score": 1
+  },
+  {
+    "relevant": true,
+    "pain_points": [
+      "Difficulty validating business ideas before significant investment",
+      "Uncertainty about customer needs and desires for new ideas"
+    ],
+    "solutions_mentioned": [],
+    "market_signals": [
+      "High interest in customer validation techniques (implied by the question)",
+      "Potential large market of entrepreneurs seeking validation methods"
+    ],
+    "sentiment": "Neutral",
+    "engagement_score": 1
+  },
+  {
+    "relevant": false,
+    "pain_points": [],
+    "solutions_mentioned": [],
+    "market_signals": [],
+    "sentiment": "neutral",
+    "engagement_score": 1
+  },
+  {
+    "relevant": true,
+    "pain_points": [
+      "Vendor lock-in with Heroku",
+      "Cost of Heroku",
+      "Lack of control over infrastructure"
+    ],
+    "solutions_mentioned": [
+      "Open-source Heroku alternative",
+      "Self-hosting on own cloud"
+    ],
+    "market_signals": [
+      "Demand for cost-effective alternatives to Heroku",
+      "Demand for greater control over infrastructure",
+      "Interest in open-source solutions",
+      "Low initial engagement suggests potential need for better marketing/presentation"
+    ],
+    "sentiment": "Neutral",
+    "engagement_score": 1
+  },
+  {
+    "relevant": true,
+    "pain_points": [
+      "Lack of effective idea generation techniques",
+      "Difficulty in overcoming idea generation blocks",
+      "Inefficient brainstorming processes"
+    ],
+    "solutions_mentioned": [],
+    "market_signals": [
+      "Potential demand for idea generation tools or services (implied by the post's existence)",
+      "Limited visible competition (no solutions directly mentioned)",
+      "Ongoing need for improved creative processes in various fields (general trend)"
+    ],
+    "sentiment": "Neutral",
+    "engagement_score": 1
+  },
+  {
+    "relevant": true,
+    "pain_points": [
+      "Opioid addiction",
+      "Need for at-home recovery options",
+      "Difficulty accessing effective treatment"
+    ],
+    "solutions_mentioned": [
+      "At-home recovery program (Ophelia)"
+    ],
+    "market_signals": [
+      "Existence of a company (Ophelia) addressing the need",
+      "Opioid addiction is a significant problem requiring solutions",
+      "YC acceptance suggests some level of market validation",
+      "Zero points and comments indicate a lack of immediate community interest or engagement, which could signal a niche market or insufficient marketing"
+    ],
+    "sentiment": "Neutral",
+    "engagement_score": 1
+  },
+  {
+    "relevant": true,
+    "pain_points": [
+      "Difficulty generating ideas",
+      "Lack of structured approach to ideation",
+      "Idea stagnation"
+    ],
+    "solutions_mentioned": [],
+    "market_signals": [
+      "High potential interest in idea generation tools (indicated by the initial 228 points, though this dropped to 0, suggesting a lack of sustained interest)",
+      "Existing demand for improved idea generation techniques (implied by the very existence of the post)",
+      "Potential competition in the idea generation space (not explicitly mentioned, but implied)"
+    ],
+    "sentiment": "Neutral (initially positive, but quickly became neutral due to lack of engagement)",
+    "engagement_score": 1
+  },
+  {
+    "relevant": false,
+    "pain_points": [
+      "Lack of a dedicated platform for showcasing game development progress visually.",
+      "Difficulty in finding a quick and easy way to share game development updates."
+    ],
+    "solutions_mentioned": [
+      "A dedicated 'Screenshot Saturday' platform or event to showcase game development progress visually."
+    ],
+    "market_signals": [
+      "Potential demand for a platform to share game development screenshots and progress updates.",
+      "Low initial engagement suggests either a niche market or insufficient marketing of the idea.",
+      "The existence of similar concepts (implied) suggests potential competition."
+    ],
+    "sentiment": "Neutral",
+    "engagement_score": 1
+  },
+  {
+    "relevant": true,
+    "pain_points": [
+      "Difficulty generating new ideas",
+      "Lack of structured approach to ideation"
+    ],
+    "solutions_mentioned": [],
+    "market_signals": [
+      "High potential interest in idea generation tools (indicated by the post's existence, though low engagement)",
+      "Potential competition in the idea generation space (lack of details makes this hard to assess)",
+      "No clear evidence of existing dominant solutions"
+    ],
+    "sentiment": "Neutral",
+    "engagement_score": 1
+  },
+  {
+    "relevant": false,
+    "pain_points": [
+      "Lack of understanding of what is being done wrong in an unspecified context.",
+      "Inability to generate or refine ideas effectively."
+    ],
+    "solutions_mentioned": [],
+    "market_signals": [
+      "Potential demand for idea generation assistance (implied by the user seeking help).",
+      "Lack of clear market validation for any specific solution (no engagement suggests a lack of interest in the implicit problem)."
+    ],
+    "sentiment": "Negative",
+    "engagement_score": 1
+  },
+  {
+    "relevant": true,
+    "pain_points": [
+      "Lack of effective idea generation techniques",
+      "Difficulty in brainstorming innovative ideas",
+      "Inability to overcome idea blocks"
+    ],
+    "solutions_mentioned": [],
+    "market_signals": [
+      "Potential demand for idea generation tools or services (implied by the post's existence)",
+      "Low engagement suggests limited immediate market interest or existing solutions already address the need.",
+      "The lack of comments and points indicates a niche market or a poorly presented idea."
+    ],
+    "sentiment": "Neutral",
+    "engagement_score": 1
+  },
+  {
+    "relevant": true,
+    "pain_points": [
+      "Slow and cumbersome process of swapping AI model weights",
+      "Inefficiency in deploying updated models"
+    ],
+    "solutions_mentioned": [
+      "Instant hot-swapping for AI model weights (Outerport)"
+    ],
+    "market_signals": [
+      "Existence of a company (Outerport) addressing the problem implies some market demand",
+      "YC acceptance suggests some validation of the problem and solution",
+      "Zero points and comments indicate low initial engagement and may suggest limited immediate market interest or poor initial presentation."
+    ],
+    "sentiment": "Neutral",
+    "engagement_score": 1
+  },
+  {
+    "relevant": false,
+    "pain_points": [],
+    "solutions_mentioned": [],
+    "market_signals": [],
+    "sentiment": "neutral",
+    "engagement_score": 1
+  },
+  {
+    "relevant": true,
+    "pain_points": [
+      "Transitioning to a team lead role",
+      "Lack of experience with managing a team",
+      "Uncertainty about responsibilities and expectations"
+    ],
+    "solutions_mentioned": [],
+    "market_signals": [
+      "Demand for resources and information on team leadership",
+      "Potential market for training, mentorship, or tools related to team leadership",
+      "Indicates a segment of junior developers or engineers facing this challenge"
+    ],
+    "sentiment": "Neutral",
+    "engagement_score": 1
+  },
+  {
+    "relevant": false,
+    "pain_points": [],
+    "solutions_mentioned": [],
+    "market_signals": [],
+    "sentiment": "neutral",
+    "engagement_score": 1
+  },
+  {
+    "relevant": false,
+    "pain_points": [],
+    "solutions_mentioned": [],
+    "market_signals": [],
+    "sentiment": "neutral",
+    "engagement_score": 1
+  },
+  {
+    "relevant": false,
+    "pain_points": [
+      "Analysis failed"
+    ],
+    "solutions_mentioned": [
+      "Analysis failed"
+    ],
+    "market_signals": [
+      "Analysis failed"
+    ],
+    "sentiment": "neutral",
+    "engagement_score": 0
+  },
+  {
+    "relevant": false,
+    "pain_points": [
+      "Analysis failed"
+    ],
+    "solutions_mentioned": [
+      "Analysis failed"
+    ],
+    "market_signals": [
+      "Analysis failed"
+    ],
+    "sentiment": "neutral",
+    "engagement_score": 0
+  },
+  {
+    "relevant": false,
+    "pain_points": [
+      "Analysis failed"
+    ],
+    "solutions_mentioned": [
+      "Analysis failed"
+    ],
+    "market_signals": [
+      "Analysis failed"
+    ],
+    "sentiment": "neutral",
+    "engagement_score": 0
+  },
+  {
+    "relevant": false,
+    "pain_points": [
+      "Analysis failed"
+    ],
+    "solutions_mentioned": [
+      "Analysis failed"
+    ],
+    "market_signals": [
+      "Analysis failed"
+    ],
+    "sentiment": "neutral",
+    "engagement_score": 0
+  },
+  {
+    "relevant": false,
+    "pain_points": [
+      "Analysis failed"
+    ],
+    "solutions_mentioned": [
+      "Analysis failed"
+    ],
+    "market_signals": [
+      "Analysis failed"
+    ],
+    "sentiment": "neutral",
+    "engagement_score": 0
+  },
+  {
+    "relevant": false,
+    "pain_points": [
+      "Analysis failed"
+    ],
+    "solutions_mentioned": [
+      "Analysis failed"
+    ],
+    "market_signals": [
+      "Analysis failed"
+    ],
+    "sentiment": "neutral",
+    "engagement_score": 0
+  },
+  {
+    "relevant": false,
+    "pain_points": [
+      "Analysis failed"
+    ],
+    "solutions_mentioned": [
+      "Analysis failed"
+    ],
+    "market_signals": [
+      "Analysis failed"
+    ],
+    "sentiment": "neutral",
+    "engagement_score": 0
+  },
+  {
+    "relevant": false,
+    "pain_points": [
+      "Analysis failed"
+    ],
+    "solutions_mentioned": [
+      "Analysis failed"
+    ],
+    "market_signals": [
+      "Analysis failed"
+    ],
+    "sentiment": "neutral",
+    "engagement_score": 0
+  },
+  {
+    "relevant": false,
+    "pain_points": [
+      "Analysis failed"
+    ],
+    "solutions_mentioned": [
+      "Analysis failed"
+    ],
+    "market_signals": [
+      "Analysis failed"
+    ],
+    "sentiment": "neutral",
+    "engagement_score": 0
+  },
+  {
+    "relevant": false,
+    "pain_points": [
+      "Analysis failed"
+    ],
+    "solutions_mentioned": [
+      "Analysis failed"
+    ],
+    "market_signals": [
+      "Analysis failed"
+    ],
+    "sentiment": "neutral",
+    "engagement_score": 0
+  },
+  {
+    "relevant": false,
+    "pain_points": [
+      "Analysis failed"
+    ],
+    "solutions_mentioned": [
+      "Analysis failed"
+    ],
+    "market_signals": [
+      "Analysis failed"
+    ],
+    "sentiment": "neutral",
+    "engagement_score": 0
+  },
+  {
+    "relevant": false,
+    "pain_points": [
+      "Analysis failed"
+    ],
+    "solutions_mentioned": [
+      "Analysis failed"
+    ],
+    "market_signals": [
+      "Analysis failed"
+    ],
+    "sentiment": "neutral",
+    "engagement_score": 0
+  },
+  {
+    "relevant": true,
+    "pain_points": [
+      "Unsolved problem requiring a solution worth $100/month to the poster."
+    ],
+    "solutions_mentioned": [],
+    "market_signals": [
+      "Willingness to pay $100/month for a solution indicates potential demand.",
+      "Zero comments and points suggest either the problem is highly niche or poorly articulated, indicating potential challenges in market reach and understanding the target audience.",
+      "Lack of engagement could indicate a lack of existing solutions or a very specific, hard-to-solve problem."
+    ],
+    "sentiment": "Neutral",
+    "engagement_score": 1
+  },
+  {
+    "relevant": false,
+    "pain_points": [],
+    "solutions_mentioned": [],
+    "market_signals": [],
+    "sentiment": "neutral",
+    "engagement_score": 1
+  },
+  {
+    "relevant": true,
+    "pain_points": [
+      "Burnout"
+    ],
+    "solutions_mentioned": [],
+    "market_signals": [
+      "Demand for solutions to burnout",
+      "Potential market for burnout recovery resources (the post itself indicates a need)"
+    ],
+    "sentiment": "Negative",
+    "engagement_score": 1
+  },
+  {
+    "relevant": false,
+    "pain_points": [],
+    "solutions_mentioned": [],
+    "market_signals": [],
+    "sentiment": "neutral",
+    "engagement_score": 1
+  },
+  {
+    "relevant": true,
+    "pain_points": [
+      "Difficulty finding asynchronous work opportunities",
+      "Lack of platforms or resources dedicated to asynchronous work"
+    ],
+    "solutions_mentioned": [],
+    "market_signals": [
+      "Demand for asynchronous work options",
+      "Potential market gap for a platform connecting asynchronous workers and employers"
+    ],
+    "sentiment": "Neutral",
+    "engagement_score": 1
+  },
+  {
+    "relevant": false,
+    "pain_points": [],
+    "solutions_mentioned": [],
+    "market_signals": [],
+    "sentiment": "neutral",
+    "engagement_score": 1
+  },
+  {
+    "relevant": false,
+    "pain_points": [
+      "Boredom after selling a startup",
+      "Difficulty scaling sales (implied by offer to coach)"
+    ],
+    "solutions_mentioned": [
+      "Free coaching on scaling sales"
+    ],
+    "market_signals": [
+      "Potential demand for sales scaling coaching (indicated by the offer)",
+      "Low initial engagement suggests either low demand or poor post presentation/targeting",
+      "The fact that someone sold a startup and is now offering free coaching implies a potential oversupply of expertise in this area."
+    ],
+    "sentiment": "Neutral (the offer is altruistic, but the lack of engagement suggests a lack of market validation)",
+    "engagement_score": 1
+  },
+  {
+    "relevant": false,
+    "pain_points": [],
+    "solutions_mentioned": [],
+    "market_signals": [],
+    "sentiment": "neutral",
+    "engagement_score": 1
+  },
+  {
+    "relevant": true,
+    "pain_points": [
+      "Being stuck as a developer",
+      "Inability to generate ideas",
+      "Lack of inspiration",
+      "Creative block"
+    ],
+    "solutions_mentioned": [],
+    "market_signals": [
+      "Demand for solutions to help developers overcome creative blocks and generate ideas",
+      "Potential market of stuck developers seeking assistance",
+      "Low engagement suggests either a common problem with readily available solutions or a poorly phrased question."
+    ],
+    "sentiment": "Neutral",
+    "engagement_score": 1
+  },
+  {
+    "relevant": false,
+    "pain_points": [],
+    "solutions_mentioned": [],
+    "market_signals": [],
+    "sentiment": "neutral",
+    "engagement_score": 1
+  },
+  {
+    "relevant": true,
+    "pain_points": [
+      "Difficulty re-entering the job market after a period of unemployment",
+      "Lack of recent work experience",
+      "Potential skills gap",
+      "Negative perception from potential employers"
+    ],
+    "solutions_mentioned": [],
+    "market_signals": [
+      "Significant demand for resources/services that help people overcome unemployment gaps",
+      "Potential for a niche market focusing on career transition and upskilling for unemployed individuals",
+      "Low engagement suggests either a lack of awareness or a saturation of existing solutions"
+    ],
+    "sentiment": "Negative",
+    "engagement_score": 1
+  },
+  {
+    "relevant": false,
+    "pain_points": [],
+    "solutions_mentioned": [],
+    "market_signals": [],
+    "sentiment": "neutral",
+    "engagement_score": 1
+  },
+  {
+    "relevant": true,
+    "pain_points": [
+      "Need for project ideas for an AI hackday.",
+      "Lack of inspiration or direction for AI projects."
+    ],
+    "solutions_mentioned": [],
+    "market_signals": [
+      "Demand for AI project ideas and resources.",
+      "Potential market for tools or services that help generate AI project ideas.",
+      "Low engagement suggests the problem might not be widely felt or easily articulated."
+    ],
+    "sentiment": "neutral",
+    "engagement_score": 1
+  },
+  {
+    "relevant": false,
+    "pain_points": [],
+    "solutions_mentioned": [],
+    "market_signals": [],
+    "sentiment": "neutral",
+    "engagement_score": 1
+  },
+  {
+    "relevant": true,
+    "pain_points": [
+      "Inability to quickly and easily edit live website designs without coding knowledge",
+      "Slow and cumbersome website design modification processes"
+    ],
+    "solutions_mentioned": [
+      "A tool (Finch.io) that allows users to edit live website designs directly"
+    ],
+    "market_signals": [
+      "Potential demand for a no-code/low-code website design editing tool is implied by the post's existence.",
+      "Lack of engagement suggests either low demand, strong existing competition, or poor presentation of the solution.",
+      "The zero points and comments suggest a lack of initial traction or interest from the target audience (tech-savvy individuals)."
+    ],
+    "sentiment": "Neutral (but leaning towards negative due to lack of engagement)",
+    "engagement_score": 1
+  },
+  {
+    "relevant": false,
+    "pain_points": [],
+    "solutions_mentioned": [],
+    "market_signals": [],
+    "sentiment": "neutral",
+    "engagement_score": 1
+  },
+  {
+    "relevant": false,
+    "pain_points": [
+      "Analysis failed"
+    ],
+    "solutions_mentioned": [
+      "Analysis failed"
+    ],
+    "market_signals": [
+      "Analysis failed"
+    ],
+    "sentiment": "neutral",
+    "engagement_score": 0
+  },
+  {
+    "relevant": false,
+    "pain_points": [
+      "Analysis failed"
+    ],
+    "solutions_mentioned": [
+      "Analysis failed"
+    ],
+    "market_signals": [
+      "Analysis failed"
+    ],
+    "sentiment": "neutral",
+    "engagement_score": 0
+  },
+  {
+    "relevant": false,
+    "pain_points": [
+      "Analysis failed"
+    ],
+    "solutions_mentioned": [
+      "Analysis failed"
+    ],
+    "market_signals": [
+      "Analysis failed"
+    ],
+    "sentiment": "neutral",
+    "engagement_score": 0
+  },
+  {
+    "relevant": false,
+    "pain_points": [
+      "Analysis failed"
+    ],
+    "solutions_mentioned": [
+      "Analysis failed"
+    ],
+    "market_signals": [
+      "Analysis failed"
+    ],
+    "sentiment": "neutral",
+    "engagement_score": 0
+  },
+  {
+    "relevant": false,
+    "pain_points": [
+      "Analysis failed"
+    ],
+    "solutions_mentioned": [
+      "Analysis failed"
+    ],
+    "market_signals": [
+      "Analysis failed"
+    ],
+    "sentiment": "neutral",
+    "engagement_score": 0
+  },
+  {
+    "relevant": false,
+    "pain_points": [
+      "Analysis failed"
+    ],
+    "solutions_mentioned": [
+      "Analysis failed"
+    ],
+    "market_signals": [
+      "Analysis failed"
+    ],
+    "sentiment": "neutral",
+    "engagement_score": 0
+  },
+  {
+    "relevant": false,
+    "pain_points": [
+      "Analysis failed"
+    ],
+    "solutions_mentioned": [
+      "Analysis failed"
+    ],
+    "market_signals": [
+      "Analysis failed"
+    ],
+    "sentiment": "neutral",
+    "engagement_score": 0
+  },
+  {
+    "relevant": false,
+    "pain_points": [
+      "Analysis failed"
+    ],
+    "solutions_mentioned": [
+      "Analysis failed"
+    ],
+    "market_signals": [
+      "Analysis failed"
+    ],
+    "sentiment": "neutral",
+    "engagement_score": 0
+  },
+  {
+    "relevant": false,
+    "pain_points": [
+      "Analysis failed"
+    ],
+    "solutions_mentioned": [
+      "Analysis failed"
+    ],
+    "market_signals": [
+      "Analysis failed"
+    ],
+    "sentiment": "neutral",
+    "engagement_score": 0
+  },
+  {
+    "relevant": false,
+    "pain_points": [
+      "Analysis failed"
+    ],
+    "solutions_mentioned": [
+      "Analysis failed"
+    ],
+    "market_signals": [
+      "Analysis failed"
+    ],
+    "sentiment": "neutral",
+    "engagement_score": 0
+  },
+  {
+    "relevant": false,
+    "pain_points": [
+      "Analysis failed"
+    ],
+    "solutions_mentioned": [
+      "Analysis failed"
+    ],
+    "market_signals": [
+      "Analysis failed"
+    ],
+    "sentiment": "neutral",
+    "engagement_score": 0
+  },
+  {
+    "relevant": false,
+    "pain_points": [
+      "Analysis failed"
+    ],
+    "solutions_mentioned": [
+      "Analysis failed"
+    ],
+    "market_signals": [
+      "Analysis failed"
+    ],
+    "sentiment": "neutral",
+    "engagement_score": 0
+  },
+  {
+    "relevant": false,
+    "pain_points": [
+      "Analysis failed"
+    ],
+    "solutions_mentioned": [
+      "Analysis failed"
+    ],
+    "market_signals": [
+      "Analysis failed"
+    ],
+    "sentiment": "neutral",
+    "engagement_score": 0
+  },
+  {
+    "relevant": false,
+    "pain_points": [],
+    "solutions_mentioned": [],
+    "market_signals": [],
+    "sentiment": "neutral",
+    "engagement_score": 1
+  },
+  {
+    "relevant": false,
+    "pain_points": [
+      "Difficulties faced by foreigners working for US-based companies"
+    ],
+    "solutions_mentioned": [],
+    "market_signals": [
+      "Potential market for services addressing challenges faced by foreign employees in US companies",
+      "Low engagement suggests limited immediate demand for solutions, or the problem is not widely discussed on this platform."
+    ],
+    "sentiment": "Neutral",
+    "engagement_score": 1
+  },
+  {
+    "relevant": false,
+    "pain_points": [],
+    "solutions_mentioned": [],
+    "market_signals": [],
+    "sentiment": "neutral",
+    "engagement_score": 1
+  },
+  {
+    "relevant": false,
+    "pain_points": [
+      "Difficulty choosing between two job offers"
+    ],
+    "solutions_mentioned": [],
+    "market_signals": [
+      "Demand for skilled workers (implied by the existence of two job offers)",
+      "Low engagement suggests limited interest in the specific problem of job selection from a broad audience"
+    ],
+    "sentiment": "Neutral",
+    "engagement_score": 1
+  },
+  {
+    "relevant": false,
+    "pain_points": [],
+    "solutions_mentioned": [],
+    "market_signals": [],
+    "sentiment": "neutral",
+    "engagement_score": 1
+  },
+  {
+    "relevant": false,
+    "pain_points": [
+      "Difficulty finding a compatible engineering/developer partner for collaboration or potentially romantic reasons."
+    ],
+    "solutions_mentioned": [],
+    "market_signals": [
+      "Implies a potential market for platforms or services connecting engineers/developers for collaboration or networking, but this is very indirect and speculative."
+    ],
+    "sentiment": "Neutral",
+    "engagement_score": 1
+  },
+  {
+    "relevant": false,
+    "pain_points": [],
+    "solutions_mentioned": [],
+    "market_signals": [],
+    "sentiment": "neutral",
+    "engagement_score": 1
+  },
+  {
+    "relevant": true,
+    "pain_points": [
+      "Inaccurate scheduling estimates",
+      "Difficulty in predicting project timelines"
+    ],
+    "solutions_mentioned": [],
+    "market_signals": [
+      "Demand for improved scheduling methods",
+      "Potential market for tools or techniques to enhance estimation accuracy"
+    ],
+    "sentiment": "Neutral",
+    "engagement_score": 1
+  },
+  {
+    "relevant": false,
+    "pain_points": [],
+    "solutions_mentioned": [],
+    "market_signals": [],
+    "sentiment": "neutral",
+    "engagement_score": 1
+  },
+  {
+    "relevant": false,
+    "pain_points": [],
+    "solutions_mentioned": [],
+    "market_signals": [],
+    "sentiment": "neutral",
+    "engagement_score": 1
+  },
+  {
+    "relevant": false,
+    "pain_points": [],
+    "solutions_mentioned": [],
+    "market_signals": [],
+    "sentiment": "neutral",
+    "engagement_score": 1
+  },
+  {
+    "relevant": true,
+    "pain_points": [
+      "Lack of trust in online reviews",
+      "Difficulty verifying the authenticity of reviews",
+      "Need for certified or trusted review systems"
+    ],
+    "solutions_mentioned": [],
+    "market_signals": [
+      "Demand for trustworthy review systems",
+      "Potential market for a solution addressing review authenticity"
+    ],
+    "sentiment": "Neutral",
+    "engagement_score": 1
+  },
+  {
+    "relevant": false,
+    "pain_points": [],
+    "solutions_mentioned": [],
+    "market_signals": [],
+    "sentiment": "neutral",
+    "engagement_score": 1
+  },
+  {
+    "relevant": true,
+    "pain_points": [
+      "Burnout"
+    ],
+    "solutions_mentioned": [],
+    "market_signals": [
+      "Demand for solutions to burnout (implied by the post)",
+      "Potential market for idea generation tools or techniques to combat burnout (inferred)"
+    ],
+    "sentiment": "Negative",
+    "engagement_score": 1
+  },
+  {
+    "relevant": false,
+    "pain_points": [],
+    "solutions_mentioned": [],
+    "market_signals": [],
+    "sentiment": "neutral",
+    "engagement_score": 1
+  },
+  {
+    "relevant": true,
+    "pain_points": [
+      "Running out of iCloud storage",
+      "High cost of iCloud storage"
+    ],
+    "solutions_mentioned": [
+      "Compressing videos using HEVC encoding"
+    ],
+    "market_signals": [
+      "Implied demand for iCloud storage optimization solutions",
+      "Lack of significant initial engagement suggests either low demand or strong existing competition",
+      "HEVC compression is a known technique, indicating the solution is not novel"
+    ],
+    "sentiment": "Neutral",
+    "engagement_score": 1
+  },
+  {
+    "relevant": false,
+    "pain_points": [
+      "Analysis failed"
+    ],
+    "solutions_mentioned": [
+      "Analysis failed"
+    ],
+    "market_signals": [
+      "Analysis failed"
+    ],
+    "sentiment": "neutral",
+    "engagement_score": 0
+  },
+  {
+    "relevant": false,
+    "pain_points": [
+      "Analysis failed"
+    ],
+    "solutions_mentioned": [
+      "Analysis failed"
+    ],
+    "market_signals": [
+      "Analysis failed"
+    ],
+    "sentiment": "neutral",
+    "engagement_score": 0
+  },
+  {
+    "relevant": false,
+    "pain_points": [
+      "Analysis failed"
+    ],
+    "solutions_mentioned": [
+      "Analysis failed"
+    ],
+    "market_signals": [
+      "Analysis failed"
+    ],
+    "sentiment": "neutral",
+    "engagement_score": 0
+  },
+  {
+    "relevant": false,
+    "pain_points": [
+      "Analysis failed"
+    ],
+    "solutions_mentioned": [
+      "Analysis failed"
+    ],
+    "market_signals": [
+      "Analysis failed"
+    ],
+    "sentiment": "neutral",
+    "engagement_score": 0
+  },
+  {
+    "relevant": false,
+    "pain_points": [
+      "Analysis failed"
+    ],
+    "solutions_mentioned": [
+      "Analysis failed"
+    ],
+    "market_signals": [
+      "Analysis failed"
+    ],
+    "sentiment": "neutral",
+    "engagement_score": 0
+  },
+  {
+    "relevant": false,
+    "pain_points": [
+      "Analysis failed"
+    ],
+    "solutions_mentioned": [
+      "Analysis failed"
+    ],
+    "market_signals": [
+      "Analysis failed"
+    ],
+    "sentiment": "neutral",
+    "engagement_score": 0
+  },
+  {
+    "relevant": false,
+    "pain_points": [
+      "Analysis failed"
+    ],
+    "solutions_mentioned": [
+      "Analysis failed"
+    ],
+    "market_signals": [
+      "Analysis failed"
+    ],
+    "sentiment": "neutral",
+    "engagement_score": 0
+  },
+  {
+    "relevant": false,
+    "pain_points": [
+      "Analysis failed"
+    ],
+    "solutions_mentioned": [
+      "Analysis failed"
+    ],
+    "market_signals": [
+      "Analysis failed"
+    ],
+    "sentiment": "neutral",
+    "engagement_score": 0
+  },
+  {
+    "relevant": false,
+    "pain_points": [
+      "Analysis failed"
+    ],
+    "solutions_mentioned": [
+      "Analysis failed"
+    ],
+    "market_signals": [
+      "Analysis failed"
+    ],
+    "sentiment": "neutral",
+    "engagement_score": 0
+  },
+  {
+    "relevant": false,
+    "pain_points": [
+      "Analysis failed"
+    ],
+    "solutions_mentioned": [
+      "Analysis failed"
+    ],
+    "market_signals": [
+      "Analysis failed"
+    ],
+    "sentiment": "neutral",
+    "engagement_score": 0
+  },
+  {
+    "relevant": false,
+    "pain_points": [
+      "Analysis failed"
+    ],
+    "solutions_mentioned": [
+      "Analysis failed"
+    ],
+    "market_signals": [
+      "Analysis failed"
+    ],
+    "sentiment": "neutral",
+    "engagement_score": 0
+  },
+  {
+    "relevant": false,
+    "pain_points": [
+      "Analysis failed"
+    ],
+    "solutions_mentioned": [
+      "Analysis failed"
+    ],
+    "market_signals": [
+      "Analysis failed"
+    ],
+    "sentiment": "neutral",
+    "engagement_score": 0
+  },
+  {
+    "relevant": false,
+    "pain_points": [
+      "Analysis failed"
+    ],
+    "solutions_mentioned": [
+      "Analysis failed"
+    ],
+    "market_signals": [
+      "Analysis failed"
+    ],
+    "sentiment": "neutral",
+    "engagement_score": 0
+  },
+  {
+    "relevant": false,
+    "pain_points": [
+      "Analysis failed"
+    ],
+    "solutions_mentioned": [
+      "Analysis failed"
+    ],
+    "market_signals": [
+      "Analysis failed"
+    ],
+    "sentiment": "neutral",
+    "engagement_score": 0
+  },
+  {
+    "relevant": false,
+    "pain_points": [
+      "Analysis failed"
+    ],
+    "solutions_mentioned": [
+      "Analysis failed"
+    ],
+    "market_signals": [
+      "Analysis failed"
+    ],
+    "sentiment": "neutral",
+    "engagement_score": 0
+  },
+  {
+    "relevant": false,
+    "pain_points": [],
+    "solutions_mentioned": [],
+    "market_signals": [],
+    "sentiment": "neutral",
+    "engagement_score": 1
+  }
+]

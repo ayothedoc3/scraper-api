@@ -1,0 +1,62 @@
+[
+  {
+    "relevant": false,
+    "pain_points": [],
+    "solutions_mentioned": [],
+    "market_signals": [],
+    "sentiment": "neutral",
+    "engagement_score": 1
+  },
+  {
+    "relevant": true,
+    "pain_points": [
+      "Lack of documented operations playbooks",
+      "Manual business processes",
+      "Inefficient operations"
+    ],
+    "solutions_mentioned": [
+      "Documenting operations playbooks",
+      "Automating business processes"
+    ],
+    "market_signals": [
+      "Implied demand for automation solutions for business processes",
+      "Low engagement suggests either low demand or highly saturated market,  or poor post presentation",
+      "No direct mention of competition"
+    ],
+    "sentiment": "Neutral",
+    "engagement_score": 1
+  },
+  {
+    "relevant": false,
+    "pain_points": [],
+    "solutions_mentioned": [],
+    "market_signals": [],
+    "sentiment": "neutral",
+    "engagement_score": 1
+  },
+  {
+    "relevant": true,
+    "pain_points": [
+      "Complicated manual business processes",
+      "Inefficiency in business operations"
+    ],
+    "solutions_mentioned": [
+      "Automation of business processes"
+    ],
+    "market_signals": [
+      "Implied demand for automation solutions (zero engagement suggests lack of immediate, visible demand or a niche market)",
+      "Lack of visible competition (absence of similar posts doesn't confirm lack of competition, only lack of visibility on HN)",
+      "Potential trend towards automation in businesses (general trend, not specifically validated by this post)"
+    ],
+    "sentiment": "Neutral",
+    "engagement_score": 1
+  },
+  {
+    "relevant": false,
+    "pain_points": [],
+    "solutions_mentioned": [],
+    "market_signals": [],
+    "sentiment": "neutral",
+    "engagement_score": 1
+  }
+]
