@@ -13,10 +13,81 @@ A professional Streamlit application that provides a user-friendly interface for
 -   Comprehensive logging for monitoring and debugging
 -   Configuration options for API keys, scoring weights, and validation thresholds
 
-## Requirements
+## Stack
 
--   Python 3.8+
--   Dependencies listed in `requirements.txt`
+-   Python 3.12 (specified in `runtime.txt`)
+-   Dependencies:
+    ```
+    plotly
+    pandas
+    matplotlib
+    numpy
+    requests
+    pydantic
+    langchain
+    langchain-google-genai
+    python-dotenv
+    beautifulsoup4
+    scraperapi-sdk
+    tiktoken
+    psycopg2-binary
+    python-decouple
+    fastapi
+    uvicorn
+    python-multipart
+    lxml
+    requests-html
+    nltk
+    scikit-learn
+    transformers
+    torch
+    accelerate
+    rouge
+    streamlit-chat
+    streamlit-extras
+    streamlit-option-menu
+    streamlit-lottie
+    streamlit-tags
+    streamlit-image-select
+    streamlit-pandas-profiling
+    streamlit-aggrid
+    streamlit-ace
+    streamlit-js-eval
+    streamlit-webrtc
+    streamlit-timeline
+    streamlit-vega-lite
+    streamlit-folium
+    streamlit-jupyter
+    streamlit-observable
+    streamlit-echarts
+    streamlit-plotly-events
+    streamlit-elements
+    streamlit-agraph
+    streamlit-canvas
+    streamlit-card
+    streamlit-cookie-manager
+    streamlit-embedcode
+    streamlit-image-comparison
+    streamlit-image-coordinates
+    streamlit-image-filter
+    streamlit-image-ocr
+    streamlit-image-upload
+    streamlit-img-label
+    streamlit-json-editor
+    streamlit-keyup
+    streamlit-pydantic
+    streamlit-qrcode
+    streamlit-searchbox
+    streamlit-state
+    streamlit-toggle
+    streamlit-video
+    streamlit-vizzu
+    streamlit-webcam
+    streamlit-worker
+    streamlit-ws-message
+    streamlit-zeroclipboard
+    streamlit-zoomable-image
+    ```
 
 ## Installation
 
