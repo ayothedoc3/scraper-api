@@ -22,7 +22,7 @@ from business_validator.models import CombinedAnalysis
 from business_validator.utils.environment import setup_environment, save_checkpoint, load_checkpoint
 from business_validator.utils.reporting import print_validation_report
 
-from business_validator.analyzers.keyword_generator import generate_keywords
+from business_validator.analyzers.keyword_generator_simple import generate_keywords
 from business_validator.analyzers.hackernews_analyzer import analyze_hn_post
 from business_validator.analyzers.reddit_analyzer import analyze_reddit_post
 from business_validator.analyzers.combined_analyzer import (
@@ -46,6 +46,10 @@ def validate_business_idea(business_idea: str) -> CombinedAnalysis:
     Returns:
         CombinedAnalysis object with validation results
     """
+    # Validate API keys first
+    from business_validator.config import validate_api_keys
+    validate_api_keys()
+    
     # Setup environment for this run
     env = setup_environment(business_idea)
     run_id = env["run_id"]
